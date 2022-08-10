@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/Header';
-import NavBar from './components/Nav-bar';
+import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 
 const App = () => {
@@ -8,7 +8,7 @@ const App = () => {
     <div className='app-wrapper'>
       <Header />
 
-      <NavBar />
+      <Navbar />
 
       <Profile />
     </div>
