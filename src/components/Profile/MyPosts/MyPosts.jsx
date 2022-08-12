@@ -1,4 +1,4 @@
-import style from './MyPosts.module.css';
+import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = () => {
@@ -14,7 +14,7 @@ const MyPosts = () => {
   })
 
   return (
-    <div className={style.postsBlock}>
+    <div className={styles.postsBlock}>
       <h3>My posts</h3>
 
       <div>
@@ -27,7 +27,7 @@ const MyPosts = () => {
         </div>
       </div>
 
-      <div className={style.posts}>
+      <div className={styles.posts}>
         {postsElements}
       </div>
     </div>
