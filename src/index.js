@@ -4,10 +4,33 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const dialogs = [
+  { id: 1, name: 'Dima' },
+  { id: 2, name: 'Tome' },
+  { id: 3, name: 'Jone' },
+];
+
+const messages = [
+  { id: 1, message: 'Hi' },
+  { id: 2, message: 'Yo' },
+  { id: 3, message: 'Hello' }
+];
+
+const posts = [
+  { id: 1, message: 'Hi', likesCount: 0 },
+  { id: 2, message: 'Hello', likesCount: 12 },
+]
+
+const data = {
+  dialogs,
+  messages,
+  posts,
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App data={data}/>
   </React.StrictMode>
 );
 
