@@ -7,22 +7,25 @@ const MyPosts = (props) => {
 
   const postsElements = props.state.map(({ id, message, likesCount }) => {
     return (
-      <Post id={id} key={id} message={message} likesCount={likesCount}/>
+      <Post id={ id } key={ id } message={ message } likesCount={ likesCount }/>
     )
   })
 
   const addPost = () => {
-    const text = newPostElement.current.value;
-    return alert(text);
+    props.addPost();
+  }
+
+  const onPostChange = () => {
+    return props.updateNewPostText(newPostElement.current.value);
   }
 
   return (
-    <div className={styles.postsBlock}>
+    <div className={ styles.postsBlock }>
       <h3>My posts</h3>
 
       <div>
         <div>
-          <textarea ref={newPostElement}></textarea>
+          <textarea ref={ newPostElement } onChange={ onPostChange } value={ props.newPostText }/>
         </div>
 
         <div>
@@ -30,8 +33,8 @@ const MyPosts = (props) => {
         </div>
       </div>
 
-      <div className={styles.posts}>
-        {postsElements}
+      <div className={ styles.posts }>
+        { postsElements }
       </div>
     </div>
   )
