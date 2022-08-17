@@ -1,12 +1,20 @@
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
+import { useRef } from 'react';
 
 const MyPosts = (props) => {
+  const newPostElement = useRef()
+
   const postsElements = props.state.map(({ id, message, likesCount }) => {
     return (
       <Post id={id} key={id} message={message} likesCount={likesCount}/>
     )
   })
+
+  const addPost = () => {
+    const text = newPostElement.current.value;
+    return alert(text);
+  }
 
   return (
     <div className={styles.postsBlock}>
@@ -14,11 +22,11 @@ const MyPosts = (props) => {
 
       <div>
         <div>
-          <textarea name="" id=""></textarea>
+          <textarea ref={newPostElement}></textarea>
         </div>
 
         <div>
-          <button>Add post</button>
+          <button onClick={ addPost }>Add post</button>
         </div>
       </div>
 
