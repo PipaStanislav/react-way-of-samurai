@@ -1,6 +1,7 @@
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 import { useRef } from 'react';
+import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants';
 
 const MyPosts = (props) => {
   const newPostElement = useRef()
@@ -12,11 +13,11 @@ const MyPosts = (props) => {
   })
 
   const addPost = () => {
-    props.addPost();
+    props.dispatch({ type: DISPATCH_CONSTANTS.ADD_POST });
   }
 
   const onPostChange = () => {
-    return props.updateNewPostText(newPostElement.current.value);
+    return props.dispatch({ type: DISPATCH_CONSTANTS.UPDATE_NEW_POST_TEXT, newText: newPostElement.current.value });
   }
 
   return (

@@ -1,3 +1,5 @@
+import DISPATCH_CONSTANTS from '../constants/dispatch-constants'
+
 export default {
   _users: [
     {
@@ -25,7 +27,6 @@ export default {
       }
     },
   ],
-
   _state: {
     header: {
       logo: {
@@ -80,7 +81,6 @@ export default {
   },
 
   _callSubscriber() {},
-
   _setUsers() {
     this._state.messagesPage.dialogs = this._users;
     this._state.sideBar.friendsBar.friends = this._users;
@@ -90,8 +90,15 @@ export default {
     this._setUsers();
     return this._state;
   },
+  subscribe(observer) {
+    this._callSubscriber = observer;
+  },
 
   addPost() {
+    if (!this._state.profilePage.newPostText) {
+      return;
+    }
+
     const newPost = {
       id: this._state.profilePage.posts.length + 1,
       message: this._state.profilePage.newPostText,
@@ -103,13 +110,19 @@ export default {
 
     return this._callSubscriber(this);
   },
-
   updateNewPostText(newText) {
     this._state.profilePage.newPostText = newText;
     return this._callSubscriber(this);
   },
 
-  subscribe(observer) {
-    this._callSubscriber = observer;
+  dispatch(action) {
+    if (action.type === DISPATCH_CONSTANTS.ADD_POST) {
+      return this.addPost();
+    }
+
+    if (action.type === DISPATCH_CONSTANTS.UPDATE_NEW_POST_TEXT) {
+      return  this.updateNewPostText(action.newText);
+    }
   }
+
 }
