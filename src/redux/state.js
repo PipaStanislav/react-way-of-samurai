@@ -27,6 +27,7 @@ export default {
       }
     },
   ],
+
   _state: {
     header: {
       logo: {
@@ -56,11 +57,14 @@ export default {
     },
 
     messagesPage: {
+      newMessageText: 'IT kamasutra HA HA HA',
+
       messages: [
         { id: 1, message: 'Hi' },
         { id: 2, message: 'Yo' },
         { id: 3, message: 'Hello' }
       ],
+
       dialogs: [],
     },
 
@@ -81,20 +85,13 @@ export default {
   },
 
   _callSubscriber() {},
+
   _setUsers() {
     this._state.messagesPage.dialogs = this._users;
     this._state.sideBar.friendsBar.friends = this._users;
   },
 
-  getState() {
-    this._setUsers();
-    return this._state;
-  },
-  subscribe(observer) {
-    this._callSubscriber = observer;
-  },
-
-  addPost() {
+  _addPost() {
     if (!this._state.profilePage.newPostText) {
       return;
     }
@@ -110,19 +107,58 @@ export default {
 
     return this._callSubscriber(this);
   },
-  updateNewPostText(newText) {
+
+  _updateNewPostText(newText) {
     this._state.profilePage.newPostText = newText;
+
     return this._callSubscriber(this);
+  },
+
+  _addMessage() {
+    if (!this._state.messagesPage.newMessageText) {
+      return;
+    }
+
+    const newMessage = {
+      id: this._state.messagesPage.messages.length + 1,
+      message: this._state.messagesPage.newMessageText,
+    }
+
+    this._state.messagesPage.messages.push(newMessage);
+    this._state.messagesPage.newMessageText = '';
+
+    return this._callSubscriber(this);
+  },
+
+  _updateNewMessageText(newText) {
+    this._state.messagesPage.newMessageText = newText;
+
+    return this._callSubscriber(this);
+  },
+
+  getState() {
+    this._setUsers();
+    return this._state;
+  },
+  subscribe(observer) {
+    this._callSubscriber = observer;
   },
 
   dispatch(action) {
     if (action.type === DISPATCH_CONSTANTS.ADD_POST) {
-      return this.addPost();
+      return this._addPost();
     }
 
     if (action.type === DISPATCH_CONSTANTS.UPDATE_NEW_POST_TEXT) {
-      return  this.updateNewPostText(action.newText);
+      return  this._updateNewPostText(action.newText);
+    }
+
+    if (action.type === DISPATCH_CONSTANTS.ADD_MESSAGE) {
+      this._addMessage();
+    }
+
+    if (action.type === DISPATCH_CONSTANTS.UPDATE_NEW_MESSAGE_TEXT) {
+      this._updateNewMessageText(action.newText)
     }
   }
-
 }

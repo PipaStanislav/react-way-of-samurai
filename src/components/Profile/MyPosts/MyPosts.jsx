@@ -1,7 +1,7 @@
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
 import { useRef } from 'react';
-import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants';
+import { addPostActionCreator, updateNewPostActionCreator } from '../../../utils/actionCreator';
 
 const MyPosts = (props) => {
   const newPostElement = useRef()
@@ -13,11 +13,11 @@ const MyPosts = (props) => {
   })
 
   const addPost = () => {
-    props.dispatch({ type: DISPATCH_CONSTANTS.ADD_POST });
+    props.dispatch(addPostActionCreator());
   }
 
   const onPostChange = () => {
-    return props.dispatch({ type: DISPATCH_CONSTANTS.UPDATE_NEW_POST_TEXT, newText: newPostElement.current.value });
+    return props.dispatch(updateNewPostActionCreator(newPostElement.current.value));
   }
 
   return (

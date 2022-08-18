@@ -1,6 +1,4 @@
 import styles from './Message.module.css';
-import { NavLink } from 'react-router-dom';
-
 
 const Message = (props) => {
   return (

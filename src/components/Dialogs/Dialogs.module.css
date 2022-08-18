@@ -1,22 +1,17 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
+    padding: 20px;
 }
 
-.dialogsItems {
+.dialogsNavBar {
     padding: 10px;
     color: white;
 }
 
-.dialogsItems .active {
+.dialogsNavBar .active {
     color: gold;
 }
 
-.messages {
-    padding: 10px;
-}
 
-.message {
-    color: white;
-}
 
