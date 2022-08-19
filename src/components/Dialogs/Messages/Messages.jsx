@@ -1,6 +1,6 @@
 import styles from './Messages.module.css';
 import Message from './Message/Message';
-import { addMessageActionCreator, updateNewMessageActionCreator } from '../../../utils/actionCreator';
+import { sendMessageActionCreator, updateNewMessageActionCreator } from '../../../utils/actionCreators';
 
 const Messages = (props) => {
   const messagesElements = props.state.map(({ id, message }) => {
@@ -9,8 +9,8 @@ const Messages = (props) => {
     )
   });
 
-  const addMessage = () => {
-    return props.dispatch(addMessageActionCreator());
+  const sendMessage = () => {
+    return props.dispatch(sendMessageActionCreator());
   }
 
   const onChangeNewMessage = (event) => {
@@ -29,7 +29,7 @@ const Messages = (props) => {
         </div>
 
         <div>
-          <button onClick={ addMessage }>Send</button>
+          <button onClick={ sendMessage }>Send</button>
         </div>
       </div>
     </div>

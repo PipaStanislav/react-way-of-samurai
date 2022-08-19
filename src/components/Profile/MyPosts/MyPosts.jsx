@@ -1,6 +1,6 @@
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
-import { addPostActionCreator, updateNewPostActionCreator } from '../../../utils/actionCreator';
+import { addPostActionCreator, updateNewPostActionCreator } from '../../../utils/actionCreators';
 
 const MyPosts = (props) => {
   const postsElements = props.state.map(({ id, message, likesCount }) => {

@@ -1,4 +1,7 @@
-import DISPATCH_CONSTANTS from '../constants/dispatch-constants'
+import DISPATCH_CONSTANTS from '../constants/dispatch-constants';
+import profileReducer from './reducers/profileReducer';
+import dialogsReducer from './reducers/dialogsReducer';
+import sideBarReducer from './reducers/sideBarReducer';
 
 export default {
   _users: [
@@ -91,51 +94,6 @@ export default {
     this._state.sideBar.friendsBar.friends = this._users;
   },
 
-  _addPost() {
-    if (!this._state.profilePage.newPostText) {
-      return;
-    }
-
-    const newPost = {
-      id: this._state.profilePage.posts.length + 1,
-      message: this._state.profilePage.newPostText,
-      likesCount: 0,
-    }
-
-    this._state.profilePage.posts.push(newPost);
-    this._state.profilePage.newPostText = '';
-
-    return this._callSubscriber(this);
-  },
-
-  _updateNewPostText(newText) {
-    this._state.profilePage.newPostText = newText;
-
-    return this._callSubscriber(this);
-  },
-
-  _addMessage() {
-    if (!this._state.messagesPage.newMessageText) {
-      return;
-    }
-
-    const newMessage = {
-      id: this._state.messagesPage.messages.length + 1,
-      message: this._state.messagesPage.newMessageText,
-    }
-
-    this._state.messagesPage.messages.push(newMessage);
-    this._state.messagesPage.newMessageText = '';
-
-    return this._callSubscriber(this);
-  },
-
-  _updateNewMessageText(newText) {
-    this._state.messagesPage.newMessageText = newText;
-
-    return this._callSubscriber(this);
-  },
-
   getState() {
     this._setUsers();
     return this._state;
@@ -145,20 +103,10 @@ export default {
   },
 
   dispatch(action) {
-    if (action.type === DISPATCH_CONSTANTS.ADD_POST) {
-      return this._addPost();
-    }
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
+    this._state.sideBar = sideBarReducer(this._state.sideBar, action);
 
-    if (action.type === DISPATCH_CONSTANTS.UPDATE_NEW_POST_TEXT) {
-      return  this._updateNewPostText(action.newText);
-    }
-
-    if (action.type === DISPATCH_CONSTANTS.ADD_MESSAGE) {
-      this._addMessage();
-    }
-
-    if (action.type === DISPATCH_CONSTANTS.UPDATE_NEW_MESSAGE_TEXT) {
-      this._updateNewMessageText(action.newText)
-    }
+    this._callSubscriber(this);
   }
 }

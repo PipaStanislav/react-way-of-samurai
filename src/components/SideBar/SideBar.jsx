@@ -1,5 +1,5 @@
 import styles from './SideBar.module.css';
-import NavBar from './Navbar/NavBar';
+import NavBar from './NavBar/NavBar';
 import FriendsBar from './FriendsBar/FriendsBar';
 
 
