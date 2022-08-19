@@ -1,20 +1,21 @@
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
-import { addPostActionCreator, updateNewPostActionCreator } from '../../../utils/actionCreators';
 
 const MyPosts = (props) => {
-  const postsElements = props.state.map(({ id, message, likesCount }) => {
+  const { posts, addPost, updateNewPost, newPostText } = props;
+
+  const postsElements = posts.map(({ id, ...post }) => {
     return (
-      <Post id={ id } key={ id } message={ message } likesCount={ likesCount }/>
+      <Post id={ id } key={ id } post={ post }/>
     )
   })
 
-  const addPost = () => {
-    props.dispatch(addPostActionCreator());
+  const onAddPost = () => {
+    return addPost();
   }
 
   const onPostChange = (event) => {
-    return props.dispatch(updateNewPostActionCreator(event.currentTarget.value));
+    return updateNewPost(event.currentTarget.value);
   }
 
   return (
@@ -23,11 +24,11 @@ const MyPosts = (props) => {
 
       <div>
         <div>
-          <textarea onChange={ onPostChange } value={ props.newPostText }/>
+          <textarea onChange={ onPostChange } value={ newPostText }/>
         </div>
 
         <div>
-          <button onClick={ addPost }>Add post</button>
+          <button onClick={ onAddPost }>Add post</button>
         </div>
       </div>
 

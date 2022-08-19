@@ -1,15 +1,17 @@
 import styles from './ProfileInfo.module.css';
 
 const ProfileInfo = (props) => {
+  const { background, description } = props.info;
+
   return (
     <div className={ styles.profileInfo }>
       <div className={ styles.backgroundBlock }>
-        <img src={ props.state.background.src } alt={ props.state.background.title }/>
+        <img src={ background.src } alt={ background.title }/>
       </div>
 
       <div className={ styles.descriptionBlock }>
-        <img src={ props.state.description.src } alt={ props.state.description.title }/>
-        { props.state.description.text }
+        <img src={ description.src } alt={ description.title }/>
+        { description.text }
       </div>
     </div>
   )

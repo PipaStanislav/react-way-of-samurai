@@ -1,11 +1,13 @@
 import styles from './Dialogs.module.css';
 import Dialog from './Dialog/Dialog';
-import Messages from './Messages/Messages';
+import MessagesContainer from './Messages/MessagesContainer';
 
 const Dialogs = (props) => {
-  const dialogElements = props.state.dialogs.map(({ id, name, avatar }) => {
+  const { dialogs, store } = props;
+
+  const dialogElements = dialogs.map(({ id, ...dialog }) => {
       return (
-        <Dialog id={ id } key={ id } name={ name } avatar={ avatar }/>
+        <Dialog id={ id } key={ id } dialog={ dialog }/>
       )
     }
   );
@@ -16,9 +18,7 @@ const Dialogs = (props) => {
         { dialogElements }
       </div>
 
-      <Messages state={ props.state.messages }
-                newMessageText={ props.state.newMessageText }
-                dispatch={ props.dispatch }/>
+      <MessagesContainer store={ store }/>
     </div>
   )
 }

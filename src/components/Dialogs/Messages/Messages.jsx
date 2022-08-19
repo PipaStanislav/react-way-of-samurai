@@ -1,20 +1,21 @@
 import styles from './Messages.module.css';
 import Message from './Message/Message';
-import { sendMessageActionCreator, updateNewMessageActionCreator } from '../../../utils/actionCreators';
 
 const Messages = (props) => {
-  const messagesElements = props.state.map(({ id, message }) => {
+  const { messages, sendMessage, newMessageText, changeNewMessage } = props;
+
+  const messagesElements = messages.map(({ id, message }) => {
     return (
       <Message id={ id } key={ id } message={ message }/>
     )
   });
 
-  const sendMessage = () => {
-    return props.dispatch(sendMessageActionCreator());
+  const onSendMessage = () => {
+    return sendMessage();
   }
 
   const onChangeNewMessage = (event) => {
-    return props.dispatch(updateNewMessageActionCreator(event.currentTarget.value));
+    return changeNewMessage(event.currentTarget.value);
   }
 
   return (
@@ -25,11 +26,11 @@ const Messages = (props) => {
 
       <div className={ styles.newMessage }>
         <div>
-          <textarea onChange={ onChangeNewMessage } value={ props.newMessageText }></textarea>
+          <textarea onChange={ onChangeNewMessage } value={ newMessageText }></textarea>
         </div>
 
         <div>
-          <button onClick={ sendMessage }>Send</button>
+          <button onClick={ onSendMessage }>Send</button>
         </div>
       </div>
     </div>
