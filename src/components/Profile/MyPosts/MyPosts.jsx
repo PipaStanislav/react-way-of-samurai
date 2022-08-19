@@ -1,11 +1,8 @@
 import styles from './MyPosts.module.css';
 import Post from './Post/Post';
-import { useRef } from 'react';
 import { addPostActionCreator, updateNewPostActionCreator } from '../../../utils/actionCreator';
 
 const MyPosts = (props) => {
-  const newPostElement = useRef()
-
   const postsElements = props.state.map(({ id, message, likesCount }) => {
     return (
       <Post id={ id } key={ id } message={ message } likesCount={ likesCount }/>
@@ -16,8 +13,8 @@ const MyPosts = (props) => {
     props.dispatch(addPostActionCreator());
   }
 
-  const onPostChange = () => {
-    return props.dispatch(updateNewPostActionCreator(newPostElement.current.value));
+  const onPostChange = (event) => {
+    return props.dispatch(updateNewPostActionCreator(event.currentTarget.value));
   }
 
   return (
@@ -26,7 +23,7 @@ const MyPosts = (props) => {
 
       <div>
         <div>
-          <textarea ref={ newPostElement } onChange={ onPostChange } value={ props.newPostText }/>
+          <textarea onChange={ onPostChange } value={ props.newPostText }/>
         </div>
 
         <div>

@@ -1,11 +1,8 @@
 import styles from './Messages.module.css';
 import Message from './Message/Message';
-import { useRef } from 'react';
 import { addMessageActionCreator, updateNewMessageActionCreator } from '../../../utils/actionCreator';
 
 const Messages = (props) => {
-  const newMessage = useRef();
-
   const messagesElements = props.state.map(({ id, message }) => {
     return (
       <Message id={ id } key={ id } message={ message }/>
@@ -16,8 +13,8 @@ const Messages = (props) => {
     return props.dispatch(addMessageActionCreator());
   }
 
-  const onChangeNewMessage = () => {
-    return props.dispatch(updateNewMessageActionCreator(newMessage.current.value));
+  const onChangeNewMessage = (event) => {
+    return props.dispatch(updateNewMessageActionCreator(event.currentTarget.value));
   }
 
   return (
@@ -28,7 +25,7 @@ const Messages = (props) => {
 
       <div className={ styles.newMessage }>
         <div>
-          <textarea ref={ newMessage } onChange={ onChangeNewMessage } value={ props.newMessageText }></textarea>
+          <textarea onChange={ onChangeNewMessage } value={ props.newMessageText }></textarea>
         </div>
 
         <div>
