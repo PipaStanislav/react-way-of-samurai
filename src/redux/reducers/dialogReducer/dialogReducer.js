@@ -1,4 +1,5 @@
-import DISPATCH_CONSTANTS from '../../constants/dispatch-constants'
+import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants'
+import initialState from './dialogInitialState';
 
 const sendMessage = state => {
   if (!state.newMessageText) {
@@ -22,7 +23,7 @@ const updateNewMessageText = (state, newText) => {
   return state;
 };
 
-const dialogsReducer = (state, action) => {
+const dialogReducer = (state = initialState, action) => {
       if (action.type === DISPATCH_CONSTANTS.SEND_MESSAGE) {
         return sendMessage(state);
       }
@@ -34,4 +35,4 @@ const dialogsReducer = (state, action) => {
   return state;
 }
 
-export default dialogsReducer;
+export default dialogReducer;

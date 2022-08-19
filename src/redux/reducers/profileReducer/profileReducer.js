@@ -1,4 +1,5 @@
-import DISPATCH_CONSTANTS from '../../constants/dispatch-constants'
+import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants'
+import initialStore from './profileInitialState';
 
 const addPost = (state) => {
   if (!state.newPostText) {
@@ -23,7 +24,7 @@ const updateNewPostText = (state, newText) => {
   return state;
 };
 
-const profileReducer = (state, action) => {
+const profileReducer = (state = initialStore, action) => {
   if (action.type === DISPATCH_CONSTANTS.ADD_POST) {
     return addPost(state);
   }

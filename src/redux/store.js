@@ -1,7 +1,7 @@
 import DISPATCH_CONSTANTS from '../constants/dispatch-constants';
-import profileReducer from './reducers/profileReducer';
-import dialogsReducer from './reducers/dialogsReducer';
-import sideBarReducer from './reducers/sideBarReducer';
+import profileReducer from './reducers/profileReducer/profileReducer';
+import dialogReducer from './reducers/dialogReducer/dialogReducer';
+import sideBarReducer from './reducers/sideBarReducer/sideBarReducer';
 
 export default {
   _users: [
@@ -104,7 +104,7 @@ export default {
 
   dispatch(action) {
     this._state.profilePage = profileReducer(this._state.profilePage, action);
-    this._state.messagesPage = dialogsReducer(this._state.messagesPage, action);
+    this._state.messagesPage = dialogReducer(this._state.messagesPage, action);
     this._state.sideBar = sideBarReducer(this._state.sideBar, action);
 
     this._callSubscriber(this);
