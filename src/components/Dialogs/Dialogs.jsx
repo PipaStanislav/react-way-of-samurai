@@ -3,7 +3,7 @@ import Dialog from './Dialog/Dialog';
 import MessagesContainer from './Messages/MessagesContainer';
 
 const Dialogs = (props) => {
-  const { dialogs, store } = props;
+  const { dialogs } = props;
 
   const dialogElements = dialogs.map(({ id, ...dialog }) => {
       return (
@@ -18,7 +18,7 @@ const Dialogs = (props) => {
         { dialogElements }
       </div>
 
-      <MessagesContainer store={ store }/>
+      <MessagesContainer/>
     </div>
   )
 }

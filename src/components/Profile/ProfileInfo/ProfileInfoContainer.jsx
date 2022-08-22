@@ -1,11 +1,19 @@
-import styles from './ProfileInfo.module.css';
 import ProfileInfo from './ProfileInfo';
+import StoreContext from '../../../redux/StoreContext';
 
-const ProfileInfoContainer = (props) => {
-  const state = props.store.getState();
-
+const ProfileInfoContainer = () => {
   return (
-    <ProfileInfo info={ state.profilePage.info }/>
+    <StoreContext.Consumer>
+      {
+        (store) => {
+          const state = store.getState();
+
+          return (
+            <ProfileInfo info={ state.profilePage.info }/>
+          )
+        }
+      }
+    </StoreContext.Consumer>
   )
 }
 

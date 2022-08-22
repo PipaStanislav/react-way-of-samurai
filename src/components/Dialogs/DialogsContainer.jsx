@@ -1,10 +1,19 @@
 import Dialogs from './Dialogs';
+import StoreContext from '../../redux/StoreContext';
 
-const DialogsContainer = (props) => {
-  const { messagesPage } = props.store.getState();
-
+const DialogsContainer = () => {
   return (
-    <Dialogs dialogs={ messagesPage.dialogs } store={ props.store }/>
+    <StoreContext.Consumer>
+      {
+        (store) => {
+          const { messagesPage } = store.getState();
+
+          return (
+            <Dialogs dialogs={ messagesPage.dialogs }/>
+          )
+        }
+      }
+    </StoreContext.Consumer>
   )
 }
 
