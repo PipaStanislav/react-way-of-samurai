@@ -1,3 +1,5 @@
+import { cloneDeep } from 'lodash';
+
 import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants'
 import initialStore from './profileInitialState';
 
@@ -19,16 +21,15 @@ const addPost = (state) => {
     }
   }
 
-  state.posts.push(newPost);
-  state.newPostText = '';
-
-  return state;
+  return {
+    ...state,
+    newPostText: '',
+    posts: [...state.posts, newPost],
+  };
 };
 
 const updateNewPostText = (state, newText) => {
-  state.newPostText = newText;
-
-  return state;
+  return { ...state, newPostText: newText };
 };
 
 const profileReducer = (state = initialStore, action) => {

@@ -1,20 +1,17 @@
 import ProfileInfo from './ProfileInfo';
-import StoreContext from '../../../redux/StoreContext';
+import { connect } from 'react-redux';
 
-const ProfileInfoContainer = () => {
-  return (
-    <StoreContext.Consumer>
-      {
-        (store) => {
-          const state = store.getState();
-
-          return (
-            <ProfileInfo info={ state.profilePage.info }/>
-          )
-        }
-      }
-    </StoreContext.Consumer>
-  )
+const mapStateToProps = ({ profilePage }) => {
+  return {
+    info: profilePage.info,
+  };
 }
+
+const mapDispatchToProps = () => {
+  return {};
+}
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+const ProfileInfoContainer = connector(ProfileInfo);
 
 export default ProfileInfoContainer;

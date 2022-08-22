@@ -1,21 +1,22 @@
 import { Route, Routes } from 'react-router-dom';
 
 import './App.css';
-import Header from './components/Header/Header';
+import HeaderContainer from './components/Header/HeaderContainer';
 import SideBar from './components/SideBar/SideBar';
 import Profile from './components/Profile/Profile';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import SideBarContainer from './components/SideBar/SideBarContainer';
 
 const App = (props) => {
   return (
     <div className='app-wrapper'>
 
-      <Header state={ props.state.header }/>
+      <HeaderContainer/>
 
-      <SideBar state={ props.state.sideBar }/>
+      <SideBarContainer/>
 
       <div className='app-wrapper-content'>
         <Routes>
