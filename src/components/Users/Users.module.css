@@ -1,0 +1,25 @@
+.users {
+    padding: 10px;
+}
+
+.users h2 {
+    text-align: center;
+    font-size: 32px;
+}
+
+.items {
+    padding: 10px;
+    text-align: center;
+}
+
+.showMore {
+    text-align: center;
+}
+
+.showMore button {
+    width: calc(100% / 4);
+    min-width: fit-content;
+    height: 50px;
+    background-color: lightseagreen;
+    font-size: 20px;
+}

@@ -12,7 +12,7 @@ const mapStateToProps = ({ profilePage }) => {
 const mapDispatchToProps = dispatch => {
   return {
     addPost: () => {
-      dispatch(addPostActionCreator());
+      return dispatch(addPostActionCreator());
     },
 
     updateNewPost: text => {

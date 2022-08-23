@@ -4,6 +4,14 @@
     background-color: darkgray;
 }
 
+.item {
+    font-size: 26px;
+}
+
+.itemWithPadding {
+    padding: 30px 0;
+}
+
 .item a {
     color: #fff;
     text-decoration: none;

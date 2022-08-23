@@ -1,0 +1,51 @@
+.item {
+    margin-bottom: 20px;
+}
+
+.avatar {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.avatar img {
+    width: 75px;
+    height: 75px;
+    border-radius: 37.5px;
+}
+
+.avatar button {
+    display: block;
+    margin: 0 auto;
+}
+
+.userInfo {
+    display: inline-block;
+    text-align: left;
+    border: 2px solid gray;
+    border-radius: 10px;
+    color: gray;
+    vertical-align: top;
+    width: 50%;
+    height: 80px;
+    padding: 10px;
+}
+
+.userInfo h3 {
+    display: inline-block;
+    margin: 0;
+    width: 50%;
+}
+
+.userInfo h3:first-child {
+    vertical-align: top;
+}
+
+.userInfo h3:last-child {
+    text-align: right;
+}
+
+
+.userInfo p {
+    margin: 0;
+    padding-top: 20px
+}

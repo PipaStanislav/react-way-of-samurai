@@ -1,10 +1,11 @@
 export default {
   navBar: [
-    { id: 1, to: 'profile', title: 'Profile' },
-    { id: 2, to: 'dialogs', title: 'Messages' },
-    { id: 3, to: 'news', title: 'News' },
-    { id: 4, to: 'music', title: 'Music' },
-    { id: 5, to: 'settings', title: 'Settings' },
+    { id: 1, to: 'profile', title: 'Profile', hasPadding: false },
+    { id: 2, to: 'dialogs', title: 'Messages', hasPadding: false },
+    { id: 3, to: 'news', title: 'News', hasPadding: false },
+    { id: 4, to: 'music', title: 'Music', hasPadding: false },
+    { id: 5, to: 'users', title: 'Find users', hasPadding: true },
+    { id: 6, to: 'settings', title: 'Settings', hasPadding: true },
   ],
 
   friendsBar: {

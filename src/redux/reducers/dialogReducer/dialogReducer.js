@@ -1,5 +1,3 @@
-import { cloneDeep } from 'lodash';
-
 import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants'
 import initialState from './dialogInitialState';
 
@@ -25,11 +23,11 @@ const updateNewMessageText = (state, newText) => {
 };
 
 const dialogReducer = (state = initialState, action) => {
-  if (action.type === DISPATCH_CONSTANTS.SEND_MESSAGE) {
+  if (action.type === DISPATCH_CONSTANTS.DIALOG_PAGE.SEND_MESSAGE) {
     return sendMessage(state);
   }
 
-  if (action.type === DISPATCH_CONSTANTS.UPDATE_NEW_MESSAGE_TEXT) {
+  if (action.type === DISPATCH_CONSTANTS.DIALOG_PAGE.UPDATE_NEW_MESSAGE_TEXT) {
     return updateNewMessageText(state, action.newText)
   }
 
