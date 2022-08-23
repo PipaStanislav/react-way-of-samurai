@@ -10,7 +10,7 @@ export default {
   },
 
   USERS_PAGE: {
-    SHOW_MORE: 'SHOW_MORE',
+    GET_USERS: 'GET_USERS',
     FOLLOW: 'FOLLOW',
     UNFOLLOW: 'UNFOLLOW',
   }

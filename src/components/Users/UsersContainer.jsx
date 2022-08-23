@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import Users from './Users';
-import { showMoreUsersActionCreator } from '../../utils/actionCreators';
+import { getUsersActionCreator } from '../../utils/actionCreators';
 
 const mapStateToProps = ({ usersPage }) => {
   return {
@@ -12,9 +12,9 @@ const mapStateToProps = ({ usersPage }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showMore: () => {
-      return dispatch(showMoreUsersActionCreator());
-    },
+    getUsers: () => {
+      return dispatch(getUsersActionCreator())
+    }
   };
 }
 

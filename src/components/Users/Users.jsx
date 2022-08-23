@@ -1,35 +1,45 @@
+import React from 'react';
+
 import styles from './Users.module.css';
 import UserContainer from './User/UserContainer';
 
-const Users = (props) => {
-  const { users, limit, showMore } = props;
+class Users extends React.Component {
+  constructor(props) {
+    super(props);
 
-  let usersElements = users.map((user) => {
-    return (
-      <UserContainer key={ user.id } user={ user }/>
-    )
-  })
-
-  usersElements.length = limit;
-
-  const onShowMore = () => {
-    return showMore();
+    this.props.getUsers();
   }
 
-  return (
-    <div className={ styles.users }>
-      <h2> Users </h2>
+  onShowMore = () => {
+    return this.props.getUsers();
+  }
 
-      <div className={ styles.items }>
-        { usersElements }
-      </div>
+  generateUserElements = () => {
+    return this.props.users.map((user) => {
+      return (
+        <UserContainer key={ user.id } user={ user }/>
+      )
+    })
+  }
 
-      <div className={ styles.showMore }>
-        <button onClick={ onShowMore }>Show more</button>
+  render = () => {
+    const usersElements = this.generateUserElements();
+
+    return (
+      <div className={ styles.users }>
+        <h2> Users </h2>
+
+        <div className={ styles.items }>
+          { usersElements }
+        </div>
+
+        <div className={ styles.showMore }>
+          <button onClick={ this.onShowMore }>Show more</button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
 }
-
 
 export default Users;
