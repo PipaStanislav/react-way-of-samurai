@@ -2,16 +2,24 @@ import React from 'react';
 
 import styles from './Users.module.css';
 import UserContainer from './User/UserContainer';
+import userApiService from '../../api/user-api/user-api-service';
 
 class Users extends React.Component {
-  constructor(props) {
-    super(props);
+  componentDidMount() {
+    this.getUsers();
+  }
 
-    this.props.getUsers();
+  getUsers = () => {
+    const offset = this.props.users.length;
+    const limit = offset + this.props.limit;
+
+    userApiService.getUsers({ offset, limit }).then(response => {
+      this.props.getUsers(response);
+    })
   }
 
   onShowMore = () => {
-    return this.props.getUsers();
+    return this.getUsers();
   }
 
   generateUserElements = () => {

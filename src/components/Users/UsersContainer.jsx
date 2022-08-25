@@ -7,13 +7,14 @@ const mapStateToProps = ({ usersPage }) => {
   return {
     users: usersPage.users,
     limit: usersPage.limit,
+    offset: usersPage.offset,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUsers: () => {
-      return dispatch(getUsersActionCreator())
+    getUsers: (users) => {
+      return dispatch(getUsersActionCreator(users))
     }
   };
 }

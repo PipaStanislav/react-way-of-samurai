@@ -5,7 +5,6 @@ import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
-import Users from './components/Users/Users';
 import HeaderContainer from './components/Header/HeaderContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import SideBarContainer from './components/SideBar/SideBarContainer';

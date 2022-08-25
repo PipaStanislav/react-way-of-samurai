@@ -8,7 +8,7 @@ export const sendMessageActionCreator = () => ({ type: DISPATCH_CONSTANTS.DIALOG
 
 export const updateNewMessageActionCreator = text => ({ type: DISPATCH_CONSTANTS.DIALOG_PAGE.UPDATE_NEW_MESSAGE_TEXT, newText: text });
 
-export const getUsersActionCreator = () => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.GET_USERS });
+export const getUsersActionCreator = users => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.GET_USERS, users });
 
 export const followByUserActionCreator = userId => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.FOLLOW, userId });
 

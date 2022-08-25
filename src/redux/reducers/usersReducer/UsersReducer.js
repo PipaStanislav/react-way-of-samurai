@@ -1,13 +1,12 @@
 import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants'
 import initialStore from './usersInitialStore';
-import userApi from '../../../api/user-api/user-api';
 
-const getUsers = (state) => {
+const getUsers = (state, users) => {
   return {
     ...state,
     users: [
       ...state.users,
-      ...userApi.getUsers({ offset: state.users.length, limit: state.limit })
+      ...users,
     ]
   };
 }
@@ -28,7 +27,7 @@ const unfollow = (state, userId) => {
 
 const userReducer = (state = initialStore, action) => {
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.GET_USERS) {
-    return getUsers(state);
+    return getUsers(state, action.users);
   }
 
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.FOLLOW) {

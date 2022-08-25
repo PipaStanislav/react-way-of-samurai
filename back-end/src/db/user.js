@@ -1,8 +1,7 @@
-import { faker } from '@faker-js/faker';
+const { faker } = require('@faker-js/faker');
 
-const getUsers = ({ offset, limit }) => {
-  return Array(limit).fill({}).map((obj, index) => ({
-    id: index + offset + 1,
+const users = Array(100).fill({}).map((obj, index) => ({
+    id: index + 1,
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     status: faker.lorem.sentence(),
@@ -16,7 +15,7 @@ const getUsers = ({ offset, limit }) => {
       city: faker.address.city(),
     },
     get fullName() { return `${ this.firstName } ${ this.lastName }` },
-  }))
-}
+  })
+);
 
-export default { getUsers };
+module.exports = users;
