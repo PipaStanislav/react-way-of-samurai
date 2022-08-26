@@ -1,3 +1,5 @@
+const setMetaData = require('../../libs/set-meta-data');
+
 let { users } = require('../../db');
 
 class UserService {
@@ -5,16 +7,16 @@ class UserService {
     const newUser = { ...data, id: users.length + 1 };
     users.push(newUser);
 
-    return newUser;
+    return { newUser };
   }
 
-  getUsers(data) {
-    return users.slice(data.offset, data.limit);
+  getUsers({ offset = 0, limit = 10 }) {
+    return setMetaData({ data: users.slice(offset, limit), totalCount: users.length });
   }
 
   getUser(data) {
     const user = users.find(({ id }) => id === Number(data.id));
-    
+
     return user ? user : { error: 'User not exist' };
   }
 

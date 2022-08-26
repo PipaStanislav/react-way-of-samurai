@@ -10,6 +10,12 @@ export const updateNewMessageActionCreator = text => ({ type: DISPATCH_CONSTANTS
 
 export const getUsersActionCreator = users => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.GET_USERS, users });
 
+export const getMetaDataActionCreator = metaData => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.GET_META_DATA, metaData });
+
 export const followByUserActionCreator = userId => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.FOLLOW, userId });
 
 export const unfollowByUserActionCreator = userId => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.UNFOLLOW, userId });
+
+export const changeDisplayUsersActionCreator = () => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.CHANGE_DISPLAY_USERS });
+
+export const setActivePageActionCreator = pageNumber => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_ACTIVE_PAGE, pageNumber });

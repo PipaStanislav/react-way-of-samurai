@@ -7,6 +7,19 @@
     font-size: 32px;
 }
 
+.usersDisplay {
+    padding: 20px 50px;
+    text-align: right;
+}
+
+.usersDisplay button {
+    width: calc(100% / 20);
+    min-width: fit-content;
+    height: 25px;
+    background-color: lightseagreen;
+    font-size: 16px;
+}
+
 .items {
     padding: 10px;
     text-align: center;
@@ -22,4 +35,21 @@
     height: 50px;
     background-color: lightseagreen;
     font-size: 20px;
+}
+
+.selected {
+    font-weight: bold;
+}
+
+.hideShowMoreButton {
+    display: none;
+}
+
+.pages {
+    text-align: center;
+    padding: 10px;
+}
+
+.page {
+    padding: 10px;
 }
