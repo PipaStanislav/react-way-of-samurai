@@ -5,7 +5,7 @@ import {
   changeDisplayUsersActionCreator,
   getMetaDataActionCreator,
   getUsersActionCreator,
-  setActivePageActionCreator,
+  setActivePageActionCreator, setIsFetchingActionCreator,
 } from '../../utils/actionCreators';
 
 const mapStateToProps = ({ usersPage }) => {
@@ -17,26 +17,31 @@ const mapStateToProps = ({ usersPage }) => {
     totalCount: usersPage.totalCount,
     displayUsers: usersPage.displayUsers,
     activePage: usersPage.activePage,
+    preloader: usersPage.preloader,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUsers: (users) => {
+    getUsers: users => {
       return dispatch(getUsersActionCreator(users));
     },
 
-    getMetaData: (metaData) => {
+    getMetaData: metaData => {
       return dispatch(getMetaDataActionCreator(metaData));
     },
 
-    setActivePage: (pageNumber) => {
+    setActivePage: pageNumber => {
       return dispatch(setActivePageActionCreator(pageNumber));
     },
 
     changeDisplayUsers: () => {
       return dispatch(changeDisplayUsersActionCreator());
     },
+
+    setIsFetching: isFetching => {
+      return dispatch(setIsFetchingActionCreator(isFetching))
+    }
   };
 }
 

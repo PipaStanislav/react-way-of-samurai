@@ -19,3 +19,5 @@ export const unfollowByUserActionCreator = userId => ({ type: DISPATCH_CONSTANTS
 export const changeDisplayUsersActionCreator = () => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.CHANGE_DISPLAY_USERS });
 
 export const setActivePageActionCreator = pageNumber => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_ACTIVE_PAGE, pageNumber });
+
+export const setIsFetchingActionCreator = isFetching => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_IS_FETCHING, isFetching });

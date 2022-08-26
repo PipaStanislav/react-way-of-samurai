@@ -44,6 +44,16 @@ const setActivePage = (state, page) => {
   };
 }
 
+const setIsFetching = (state, isFetching) => {
+  return {
+    ...state,
+    preloader: {
+      ...state.preloader,
+      isFetching,
+    }
+  };
+}
+
 const userReducer = (state = initialStore, action) => {
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.GET_USERS) {
     return getUsers(state, action.users);
@@ -67,6 +77,10 @@ const userReducer = (state = initialStore, action) => {
 
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.SET_ACTIVE_PAGE) {
     return setActivePage(state, action.pageNumber);
+  }
+
+  if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.SET_IS_FETCHING) {
+    return setIsFetching(state, action.isFetching);
   }
 
   return state;

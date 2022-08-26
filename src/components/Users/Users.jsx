@@ -3,16 +3,20 @@ import React from 'react';
 import userApiService from '../../api/user-api/user-api-service';
 import USER_CONSTANTS from './constants/userConstants';
 import UsersPresentational from './UsersPresentational';
+import Preloader from '../common/preloader/preloader';
 
 class Users extends React.Component {
   componentDidMount = () => {
     return this.getUsers();
   }
 
-  getUsers = () => {
-    return userApiService.getUsers(this.getQuery()).then(({ data, metaData }) => {
+  getUsers = async () => {
+    await this.props.setIsFetching(true);
+
+    return userApiService.getUsers(this.getQuery()).then(async ({ data, metaData }) => {
       this.props.getUsers(data);
       this.props.getMetaData(metaData)
+      this.props.setIsFetching(false);
     })
   }
 
@@ -42,18 +46,21 @@ class Users extends React.Component {
   }
 
   render = () => {
-    return <UsersPresentational
-      users={this.props.users}
-      totalCount={this.props.totalCount}
-      limit={this.props.limit}
-      activePage={this.props.activePage}
-      displayUsers={this.props.displayUsers}
+    return <>
+      { this.props.preloader.isFetching ? <Preloader preloader={ this.props.preloader }/> : null }
 
+      <UsersPresentational
+        users={ this.props.users }
+        totalCount={ this.props.totalCount }
+        limit={ this.props.limit }
+        activePage={ this.props.activePage }
+        displayUsers={ this.props.displayUsers }
 
-      onShowMore={this.onShowMore}
-      onSetActivePage={this.onSetActivePage}
-      onChangeDisplayUsers={this.onChangeDisplayUsers}
-    />
+        onShowMore={ this.onShowMore }
+        onSetActivePage={ this.onSetActivePage }
+        onChangeDisplayUsers={ this.onChangeDisplayUsers }
+      />
+    </>
   }
 
 }
