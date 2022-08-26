@@ -1,4 +1,4 @@
-import { addPostActionCreator, updateNewPostActionCreator } from '../../../utils/actionCreators';
+import { addPost, updateNewPost } from '../../../utils/actionCreators';
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 
@@ -9,17 +9,7 @@ const mapStateToProps = ({ profilePage }) => {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addPost: () => {
-      return dispatch(addPostActionCreator());
-    },
-
-    updateNewPost: text => {
-      return dispatch(updateNewPostActionCreator(text));
-    },
-  };
-}
+const mapDispatchToProps = { addPost, updateNewPost };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 const MyPostsContainer = connector(MyPosts);

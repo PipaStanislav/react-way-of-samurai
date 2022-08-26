@@ -1,11 +1,11 @@
 import styles from './User.module.css';
 
 const User = (props) => {
-  const { user, unFollow, follow } = props;
+  const { user, unfollowByUser, followByUser } = props;
   const { avatar, fullName, status, address, isFollow } = user;
 
   const onClickFollowUnfollow = () => {
-    return isFollow ? unFollow(user.id) : follow(user.id);
+    return isFollow ? unfollowByUser(user.id) : followByUser(user.id);
   }
 
   return (
@@ -16,7 +16,7 @@ const User = (props) => {
       </div>
 
       <div className={ styles.userInfo }>
-        <div className={ styles.test }>
+        <div>
           <h3>{ fullName }</h3>
           <h3>{ address.country } <br/>{ address.city }</h3>
         </div>

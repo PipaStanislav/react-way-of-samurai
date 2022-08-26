@@ -1,8 +1,9 @@
 import styles from './Messages.module.css';
 import Message from './Message/Message';
+import { updateNewMessage } from '../../../utils/actionCreators';
 
 const Messages = (props) => {
-  const { messages, sendMessage, newMessageText, changeNewMessage } = props;
+  const { messages, sendMessage, newMessageText, updateNewMessage } = props;
 
   const messagesElements = messages.map(({ id, message }) => {
     return (
@@ -15,7 +16,7 @@ const Messages = (props) => {
   }
 
   const onChangeNewMessage = (event) => {
-    return changeNewMessage(event.currentTarget.value);
+    return updateNewMessage(event.currentTarget.value);
   }
 
   return (

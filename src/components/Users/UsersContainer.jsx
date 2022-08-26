@@ -1,12 +1,7 @@
 import { connect } from 'react-redux';
 
 import Users from './Users';
-import {
-  changeDisplayUsersActionCreator,
-  getMetaDataActionCreator,
-  getUsersActionCreator,
-  setActivePageActionCreator, setIsFetchingActionCreator,
-} from '../../utils/actionCreators';
+import { changeDisplayUsers, getMetaData, getUsers, setActivePage, setIsFetching } from '../../utils/actionCreators';
 
 const mapStateToProps = ({ usersPage }) => {
   return {
@@ -21,29 +16,7 @@ const mapStateToProps = ({ usersPage }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getUsers: users => {
-      return dispatch(getUsersActionCreator(users));
-    },
-
-    getMetaData: metaData => {
-      return dispatch(getMetaDataActionCreator(metaData));
-    },
-
-    setActivePage: pageNumber => {
-      return dispatch(setActivePageActionCreator(pageNumber));
-    },
-
-    changeDisplayUsers: () => {
-      return dispatch(changeDisplayUsersActionCreator());
-    },
-
-    setIsFetching: isFetching => {
-      return dispatch(setIsFetchingActionCreator(isFetching))
-    }
-  };
-}
+const mapDispatchToProps = { getUsers, getMetaData, setActivePage, changeDisplayUsers, setIsFetching };
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
 const UsersContainer = connector(Users);
