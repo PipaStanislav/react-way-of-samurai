@@ -1,68 +1,73 @@
-import React from 'react';
-
-import userApiService from '../../api/user-api/user-api-service';
+import styles from './Users.module.css';
 import USER_CONSTANTS from './constants/userConstants';
-import UsersPresentational from './UsersPresentational';
-import Preloader from '../common/preloader/preloader';
+import React from 'react';
+import UserContainer from './User/UserContainer';
 
-class Users extends React.Component {
-  componentDidMount = () => {
-    return this.getUsers();
-  }
-
-  getUsers = async () => {
-    await this.props.setIsFetching(true);
-
-    return userApiService.getUsers(this.getQuery()).then(async ({ data, metaData }) => {
-      this.props.getUsers(data);
-      this.props.getMetaData(metaData)
-      this.props.setIsFetching(false);
-    })
-  }
-
-  getQuery = () => {
-    return this.props.displayUsers === USER_CONSTANTS.DISPLAY_USERS.LIST
-      ? { offset: this.props.users.length, limit: this.props.limit + this.props.users.length }
-      : {
-        offset: (this.props.limit * this.props.activePage) - this.props.limit,
-        limit: this.props.limit * this.props.activePage
-      };
-  }
-
-  onShowMore = () => {
-    return this.getUsers();
-  }
-
-  onChangeDisplayUsers = async () => {
-    await this.props.changeDisplayUsers();
-
-    return this.getUsers();
-  }
-
-  onSetActivePage = async (pageNumber) => {
-    await this.props.setActivePage(pageNumber);
-
-    return this.getUsers();
-  }
-
-  render = () => {
-    return <>
-      { this.props.preloader.isFetching ? <Preloader preloader={ this.props.preloader }/> : null }
-
-      <UsersPresentational
-        users={ this.props.users }
-        totalCount={ this.props.totalCount }
-        limit={ this.props.limit }
-        activePage={ this.props.activePage }
-        displayUsers={ this.props.displayUsers }
-
-        onShowMore={ this.onShowMore }
-        onSetActivePage={ this.onSetActivePage }
-        onChangeDisplayUsers={ this.onChangeDisplayUsers }
-      />
-    </>
-  }
-
+const generateUserElements = (props) => {
+  return props.users.map((user) => {
+    return (
+      <UserContainer key={ user.id } user={ user }/>
+    )
+  })
 }
+
+const showMoreButtonElement = (props) => {
+  return (
+    <div
+      className={ `${ styles.showMore } ${ props.users.length === props.totalCount ? styles.hideShowMoreButton : '' }` }>
+      <button onClick={ props.onShowMore }>Show more</button>
+    </div>
+  );
+}
+
+const pagesButtonsElements = (props) => {
+  const pagesCount = Math.ceil(props.totalCount / props.limit);
+
+  const elements = Array(pagesCount).fill(null).map((value, index) => {
+    const count = index + 1;
+
+    return (
+      <span
+        onClick={ () => props.onSetActivePage(count) }
+        className={ `${ styles.page } ${ props.activePage === count ? styles.selected : '' } ` }
+        key={ count }
+      >
+          { count }
+        </span>
+    );
+  })
+
+  return (
+    <div className={ styles.pages }>
+      { elements }
+    </div>
+  );
+}
+
+const Users = (props) => {
+  return (
+    <div className={ styles.users }>
+      <div className={ styles.usersDisplay }>
+        <button onClick={ props.onChangeDisplayUsers }> {
+          props.displayUsers === USER_CONSTANTS.DISPLAY_USERS.LIST
+            ? USER_CONSTANTS.DISPLAY_USERS.PAGES
+            : USER_CONSTANTS.DISPLAY_USERS.LIST
+        } </button>
+      </div>
+      <h2> Users </h2>
+
+      <div className={ styles.items }>
+        { generateUserElements(props) }
+      </div>
+
+      {
+        props.displayUsers === USER_CONSTANTS.DISPLAY_USERS.LIST
+          ? showMoreButtonElement(props)
+          : pagesButtonsElements(props)
+      }
+
+    </div>
+  );
+};
 
 export default Users;

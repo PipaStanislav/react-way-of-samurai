@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { followByUser, unfollowByUser } from '../../../utils/actionCreators';
 import User from './User';
 
-const mapStateToProps = ({ users }) => {
+const mapStateToProps = (props) => {
   return {};
 }
 

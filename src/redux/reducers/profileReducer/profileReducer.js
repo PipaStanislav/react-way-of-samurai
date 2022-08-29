@@ -30,6 +30,10 @@ const updateNewPostText = (state, newText) => {
   return { ...state, newPostText: newText };
 };
 
+const setProfile = (state, profile) => {
+  return { ...state, profile };
+}
+
 const profileReducer = (state = initialStore, action) => {
   if (action.type === DISPATCH_CONSTANTS.PROFILE_PAGE.ADD_POST) {
     return addPost(state);
@@ -37,6 +41,10 @@ const profileReducer = (state = initialStore, action) => {
 
   if (action.type === DISPATCH_CONSTANTS.PROFILE_PAGE.UPDATE_NEW_POST_TEXT) {
     return updateNewPostText(state, action.newText);
+  }
+
+  if (action.type === DISPATCH_CONSTANTS.PROFILE_PAGE.SET_PROFILE) {
+    return setProfile(state, action.profile);
   }
 
   return state;

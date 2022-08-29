@@ -1,11 +1,11 @@
 import baseApiService from '../base-api-service';
 
 const userEndpoints = {
-  getUser: id => `/user/:${id}`,
+  getUser: id => `/user/${id}`,
   getUsers: () => `/user`,
   createUser: () => `/user`,
-  updateUser: id => `/user/:${id}`,
-  deleteUser: id => `/user/:${id}`,
+  updateUser: id => `/user/${id}`,
+  deleteUser: id => `/user/${id}`,
 }
 
 class userApiService extends baseApiService {

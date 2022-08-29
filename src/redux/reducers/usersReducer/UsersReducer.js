@@ -2,7 +2,7 @@ import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants'
 import initialStore from './usersInitialStore';
 import USER_CONSTANTS from '../../../components/Users/constants/userConstants';
 
-const getUsers = (state, users) => {
+const setUsers = (state, users) => {
   return state.displayUsers === USER_CONSTANTS.DISPLAY_USERS.LIST
     ? { ...state, users: [...state.users, ...users] }
     : { ...state, users: users };
@@ -56,7 +56,7 @@ const setIsFetching = (state, isFetching) => {
 
 const userReducer = (state = initialStore, action) => {
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.GET_USERS) {
-    return getUsers(state, action.users);
+    return setUsers(state, action.users);
   }
 
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.GET_META_DATA) {

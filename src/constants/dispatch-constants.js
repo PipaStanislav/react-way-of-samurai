@@ -2,6 +2,7 @@ export default {
   PROFILE_PAGE: {
     ADD_POST: 'ADD_POST',
     UPDATE_NEW_POST_TEXT: 'UPDATE_NEW_POST_TEXT',
+    SET_PROFILE: 'SET_PROFILE',
   },
 
   DIALOG_PAGE: {

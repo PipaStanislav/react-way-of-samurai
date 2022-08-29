@@ -1,4 +1,5 @@
 import styles from './User.module.css';
+import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
   const { user, unfollowByUser, followByUser } = props;
@@ -11,7 +12,9 @@ const User = (props) => {
   return (
     <div className={ styles.item }>
       <div className={ styles.avatar }>
-        <img src={ avatar.src } alt={ avatar.title }/>
+        <NavLink to={ `/profile/${user.id}` }>
+          <img src={ avatar.src } alt={ avatar.title }/>
+        </NavLink>
         <button onClick={ onClickFollowUnfollow }> { `${ isFollow ? 'Unfollow' : 'Follow' }` } </button>
       </div>
 
