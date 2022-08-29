@@ -2,7 +2,7 @@ import styles from './User.module.css';
 import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
-  const { user, onClickFollowUnfollow } = props;
+  const { user, onClickFollowUnfollow, followingInProgress } = props;
   const { avatar, fullName, status, address, isFollow } = user;
 
 
@@ -12,7 +12,13 @@ const User = (props) => {
         <NavLink to={ `/profile/${user.id}` }>
           <img src={ avatar.large.src } alt={ avatar.large.title }/>
         </NavLink>
-        <button onClick={ () => onClickFollowUnfollow(isFollow, user.id) }> { `${ isFollow ? 'Unfollow' : 'Follow' }` } </button>
+        <button
+          disabled={ followingInProgress.includes(user.id) }
+          onClick={ () => onClickFollowUnfollow(isFollow, user.id) }
+        >
+
+          { `${ isFollow ? 'Unfollow' : 'Follow' }` }
+        </button>
       </div>
 
       <div className={ styles.userInfo }>

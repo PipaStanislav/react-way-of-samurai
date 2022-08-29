@@ -15,6 +15,7 @@ import Users from './Users';
 
 const mapStateToProps = ({ usersPage, auth }) => {
   return {
+    auth,
     users: usersPage.users,
     limit: usersPage.limit,
     offset: usersPage.offset,
@@ -23,7 +24,7 @@ const mapStateToProps = ({ usersPage, auth }) => {
     displayUsers: usersPage.displayUsers,
     activePage: usersPage.activePage,
     preloader: usersPage.preloader,
-    auth,
+    followingInProgress: usersPage.followingInProgress,
   };
 };
 
@@ -88,6 +89,7 @@ class UsersContainer extends React.Component {
         activePage={ this.props.activePage }
         displayUsers={ this.props.displayUsers }
         auth={ this.props.auth }
+        followingInProgress={this.props.followingInProgress}
 
         onShowMore={ this.onShowMore }
         onSetActivePage={ this.onSetActivePage }

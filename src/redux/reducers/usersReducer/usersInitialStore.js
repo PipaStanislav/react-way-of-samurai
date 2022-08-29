@@ -14,4 +14,5 @@ export default {
     src: preloaderImage,
     alt: 'Spinner',
   },
+  followingInProgress: [],
 };

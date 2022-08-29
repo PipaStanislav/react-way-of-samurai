@@ -19,3 +19,4 @@ export const unfollowByUser = userId => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.U
 export const changeDisplayUsers = () => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.CHANGE_DISPLAY_USERS });
 export const setActivePage = pageNumber => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_ACTIVE_PAGE, pageNumber });
 export const setIsFetching = isFetching => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_IS_FETCHING, isFetching });
+export const setIsFollowingInProgress = data => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.FOLLOWING_IN_PROGRESS, data });

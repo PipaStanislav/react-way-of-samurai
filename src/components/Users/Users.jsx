@@ -6,7 +6,11 @@ import UserContainer from './User/UserContainer';
 const generateUserElements = (props) => {
   return props.users.map((user) => {
     return (
-      <UserContainer key={ user.id } user={ user } auth={ props.auth }/>
+      <UserContainer
+        key={ user.id }
+        user={ user }
+        followingInProgress={ props.followingInProgress }
+        auth={ props.auth }/>
     )
   })
 }

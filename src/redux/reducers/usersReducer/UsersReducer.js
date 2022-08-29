@@ -54,6 +54,15 @@ const setIsFetching = (state, isFetching) => {
   };
 }
 
+const setIsFollowingInProgress = (state, { isFollowingInProgress, userId }) => {
+  return {
+    ...state,
+    followingInProgress: isFollowingInProgress
+      ? [...state.followingInProgress, userId]
+      : state.followingInProgress.filter((id) => id !== userId),
+  };
+}
+
 const userReducer = (state = initialStore, action) => {
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.SET_USERS) {
     return setUsers(state, action.users);
@@ -81,6 +90,10 @@ const userReducer = (state = initialStore, action) => {
 
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.SET_IS_FETCHING) {
     return setIsFetching(state, action.isFetching);
+  }
+
+  if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.FOLLOWING_IN_PROGRESS) {
+    return setIsFollowingInProgress(state, action.data);
   }
 
   return state;
