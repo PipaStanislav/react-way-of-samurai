@@ -1,4 +1,8 @@
 export default {
+  AUTH: {
+    SET_AUTH_DATA: 'SET_AUTH_DATA',
+  },
+
   PROFILE_PAGE: {
     ADD_POST: 'ADD_POST',
     UPDATE_NEW_POST_TEXT: 'UPDATE_NEW_POST_TEXT',

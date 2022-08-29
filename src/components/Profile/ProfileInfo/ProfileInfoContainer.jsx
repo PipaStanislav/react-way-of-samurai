@@ -36,7 +36,10 @@ class ProfileInfoContainer extends React.Component {
   }
   
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.router.params.id && !this.props.router.params.id ) {
+    const prevId = prevProps.router.params.id;
+    const currId = this.props.router.params.id;
+
+    if (prevId && !currId || prevId !== currId) {
       return this.setProfile();
     }
   }
