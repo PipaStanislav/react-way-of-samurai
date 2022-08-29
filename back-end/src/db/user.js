@@ -5,7 +5,6 @@ const users = Array(100).fill({}).map((obj, index) => ({
     firstName: faker.name.firstName(),
     lastName: faker.name.lastName(),
     status: faker.lorem.sentence(),
-    isFollow: faker.datatype.boolean(),
     avatar: {
       small: {
         src: faker.image.image(320, 240),

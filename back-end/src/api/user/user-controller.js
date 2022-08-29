@@ -31,6 +31,18 @@ class UserController {
 
     return setResponseData(response, userService.deleteUser(data));
   }
+
+  follow(request, response) {
+    const data = getRequestData(request);
+
+    return setResponseData(response, userService.follow(data));
+  }
+
+  unfollow(request, response) {
+    const data = getRequestData(request);
+
+    return setResponseData(response, userService.unfollow(data));
+  }
 }
 
 module.exports = new UserController();

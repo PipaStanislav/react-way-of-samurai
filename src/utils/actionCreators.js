@@ -12,8 +12,8 @@ export const updateNewMessage = text => ({
   newText: text
 });
 
-export const setUsers = users => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.GET_USERS, users });
-export const getMetaData = metaData => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.GET_META_DATA, metaData });
+export const setUsers = users => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_USERS, users });
+export const setMetaData = metaData => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_META_DATA, metaData });
 export const followByUser = userId => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.FOLLOW, userId });
 export const unfollowByUser = userId => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.UNFOLLOW, userId });
 export const changeDisplayUsers = () => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.CHANGE_DISPLAY_USERS });

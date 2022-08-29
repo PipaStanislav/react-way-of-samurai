@@ -2,12 +2,9 @@ import styles from './User.module.css';
 import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
-  const { user, unfollowByUser, followByUser } = props;
+  const { user, onClickFollowUnfollow } = props;
   const { avatar, fullName, status, address, isFollow } = user;
 
-  const onClickFollowUnfollow = () => {
-    return isFollow ? unfollowByUser(user.id) : followByUser(user.id);
-  }
 
   return (
     <div className={ styles.item }>
@@ -15,7 +12,7 @@ const User = (props) => {
         <NavLink to={ `/profile/${user.id}` }>
           <img src={ avatar.large.src } alt={ avatar.large.title }/>
         </NavLink>
-        <button onClick={ onClickFollowUnfollow }> { `${ isFollow ? 'Unfollow' : 'Follow' }` } </button>
+        <button onClick={ () => onClickFollowUnfollow(isFollow, user.id) }> { `${ isFollow ? 'Unfollow' : 'Follow' }` } </button>
       </div>
 
       <div className={ styles.userInfo }>

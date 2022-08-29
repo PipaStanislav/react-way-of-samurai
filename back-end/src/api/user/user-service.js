@@ -1,6 +1,6 @@
 const setMetaData = require('../../libs/set-meta-data');
 
-let { users } = require('../../db');
+let { users, followers } = require('../../db');
 
 class UserService {
   createUser(data) {
@@ -10,8 +10,14 @@ class UserService {
     return { newUser };
   }
 
-  getUsers({ offset = 0, limit = 10 }) {
-    return setMetaData({ data: users.slice(offset, limit), totalCount: users.length });
+  getUsers({ offset = 0, limit = 10, authUser = {} }) {
+    const data = users.slice(offset, limit).map((user) => {
+      const follower = followers.find(({ userId, followerId }) => userId === user.id && followerId === 1);
+
+      return follower ? { ...user, isFollow: true } : { ...user, isFollow: false };
+    });
+
+    return setMetaData({ data, totalCount: users.length });
   }
 
   getUser(data) {
@@ -33,6 +39,22 @@ class UserService {
   deleteUser(data) {
     users = users.filter(({ id }) => id !== Number(data.id))
 
+    return true;
+  }
+
+  follow({ id, userId }) {
+    const newFollower = {
+      id: followers[followers.length - 1].id + 1,
+      userId,
+      followerId: id,
+    }
+
+    followers.push(newFollower);
+    return true;
+  }
+
+  unfollow({ id, userId }) {
+    followers = followers.filter((follower) => (follower.userId !== userId || follower.followerId !== id))
     return true;
   }
 }

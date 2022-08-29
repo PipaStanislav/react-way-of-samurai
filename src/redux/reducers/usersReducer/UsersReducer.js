@@ -55,11 +55,11 @@ const setIsFetching = (state, isFetching) => {
 }
 
 const userReducer = (state = initialStore, action) => {
-  if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.GET_USERS) {
+  if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.SET_USERS) {
     return setUsers(state, action.users);
   }
 
-  if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.GET_META_DATA) {
+  if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.SET_META_DATA) {
     return getMetaData(state, action.metaData);
   }
 
