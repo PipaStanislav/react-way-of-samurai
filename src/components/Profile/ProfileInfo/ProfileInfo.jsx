@@ -14,7 +14,7 @@ const ProfileInfo = (props) => {
 
       <div className={ styles.descriptionBlock }>
         <div className={ styles.photoSection }>
-          <img src={ props.profile.photos.large.src } alt={ props.profile.photos.large.title }/>
+          <img src={ props.profile.avatar.large.src } alt={ props.profile.avatar.large.title }/>
         </div>
 
         <div className={ styles.infoSection }>

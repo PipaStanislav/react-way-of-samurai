@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import ProfileInfo from './ProfileInfo';
-import { connect } from 'react-redux';
 import profileApiService from '../../../api/profile-api/profile-api-service';
 import { setProfile } from '../../../utils/actionCreators';
 
@@ -15,13 +16,33 @@ const mapStateToProps = ({ profilePage }) => {
 
 const mapDispatchToProps = { setProfile };
 
+const withRouter = Component => {
+  const ComponentWithRouterProps = (props) => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const params = useParams();
+
+    return (
+      <Component { ...props } router={ { location, navigate, params } }/>
+    );
+  };
+
+  return ComponentWithRouterProps;
+}
+
 class ProfileInfoContainer extends React.Component {
   async componentDidMount() {
-    return this.setProfile()
+    return this.setProfile(this.props.router.params.id);
+  }
+  
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.router.params.id && !this.props.router.params.id ) {
+      return this.setProfile();
+    }
   }
 
-  setProfile = () => {
-    return profileApiService.getProfile({ id: 2 }).then((response) => {
+  setProfile = (id = 1) => {
+    return profileApiService.getProfile({ id }).then((response) => {
       this.props.setProfile(response);
     })
   }
@@ -33,5 +54,5 @@ class ProfileInfoContainer extends React.Component {
   }
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileInfoContainer);
+const withRouterProfileInfoContainer = withRouter(ProfileInfoContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouterProfileInfoContainer);

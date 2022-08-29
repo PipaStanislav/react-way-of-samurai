@@ -2,7 +2,7 @@ const { faker } = require('@faker-js/faker');
 
 const users = require('./user');
 
-const profiles = users.map(({ id, firstName, lastName, fullName }) => {
+const profiles = users.map(({ id, firstName, lastName, fullName, avatar }) => {
   const userName = faker.internet.userName(firstName, lastName);
 
   return {
@@ -17,16 +17,7 @@ const profiles = users.map(({ id, firstName, lastName, fullName }) => {
     lookingForAJobDescription: faker.lorem.sentences(),
     fullName,
     userId: id,
-    photos: {
-      small: {
-        src: faker.image.image(320, 240),
-        title: 'small'
-      },
-      large: {
-        src: faker.image.avatar(640, 480),
-        title: 'large'
-      },
-    },
+    avatar
   }
 });
 

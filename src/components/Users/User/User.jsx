@@ -13,7 +13,7 @@ const User = (props) => {
     <div className={ styles.item }>
       <div className={ styles.avatar }>
         <NavLink to={ `/profile/${user.id}` }>
-          <img src={ avatar.src } alt={ avatar.title }/>
+          <img src={ avatar.large.src } alt={ avatar.large.title }/>
         </NavLink>
         <button onClick={ onClickFollowUnfollow }> { `${ isFollow ? 'Unfollow' : 'Follow' }` } </button>
       </div>

@@ -7,8 +7,14 @@ const users = Array(100).fill({}).map((obj, index) => ({
     status: faker.lorem.sentence(),
     isFollow: faker.datatype.boolean(),
     avatar: {
-      src: faker.image.avatar(),
-      title: 'avatar',
+      small: {
+        src: faker.image.image(320, 240),
+        title: 'small'
+      },
+      large: {
+        src: faker.image.avatar(640, 480),
+        title: 'large'
+      },
     },
     address: {
       country: faker.address.country(),
