@@ -1,17 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  changeDisplayUsers,
-  setUsers,
-  setActivePage,
-  setIsFetching,
-  setMetaData, followByUser, unfollowByUser
-} from '../../utils/actionCreators';
-import userApiService from '../../api/user-api/user-api-service';
 import USER_CONSTANTS from './constants/userConstants';
-import Preloader from '../common/preloader/preloader';
+
 import Users from './Users';
+import Preloader from '../common/preloader/preloader';
+import { changeDisplayUsers, setActivePage } from '../../redux/actionCreators/actionCreators';
+import { getUsers } from '../../redux/thunkCreators/thunkCreators';
 
 const mapStateToProps = ({ usersPage, auth }) => {
   return {
@@ -24,18 +19,15 @@ const mapStateToProps = ({ usersPage, auth }) => {
     displayUsers: usersPage.displayUsers,
     activePage: usersPage.activePage,
     preloader: usersPage.preloader,
-    followingInProgress: usersPage.followingInProgress,
+    followingUnfollowingInProgress: usersPage.followingUnfollowingInProgress,
+    defaultData: usersPage.defaultData,
   };
 };
 
 const mapDispatchToProps = {
-  setUsers,
-  followByUser,
-  unfollowByUser,
-  setMetaData,
   setActivePage,
   changeDisplayUsers,
-  setIsFetching
+  getUsers,
 };
 
 class UsersContainer extends React.Component {
@@ -44,13 +36,7 @@ class UsersContainer extends React.Component {
   }
 
   setUsers = async () => {
-    this.props.setIsFetching(true);
-
-    return userApiService.getUsers(this.getQuery()).then(async ({ data, metaData }) => {
-      this.props.setUsers(data);
-      this.props.setMetaData(metaData)
-      this.props.setIsFetching(false);
-    })
+    this.props.getUsers(this.getQuery());
   }
 
   getQuery = () => {
@@ -66,38 +52,39 @@ class UsersContainer extends React.Component {
     return this.setUsers();
   }
 
-  onChangeDisplayUsers = () => {
-    this.props.changeDisplayUsers();
+  onChangeDisplayUsers = async () => {
+    await this.props.changeDisplayUsers();
 
     return this.setUsers();
   }
 
-  onSetActivePage = (pageNumber) => {
-    this.props.setActivePage(pageNumber);
+  onSetActivePage = async pageNumber => {
+    await this.props.setActivePage(pageNumber);
 
     return this.setUsers();
   }
 
   render = () => {
-    return <>
-      { this.props.preloader.isFetching ? <Preloader preloader={ this.props.preloader }/> : null }
+    return (
+      <>
+        { this.props.preloader.isFetching ? <Preloader preloader={ this.props.preloader }/> : null }
 
-      <Users
-        users={ this.props.users }
-        totalCount={ this.props.totalCount }
-        limit={ this.props.limit }
-        activePage={ this.props.activePage }
-        displayUsers={ this.props.displayUsers }
-        auth={ this.props.auth }
-        followingInProgress={this.props.followingInProgress}
+        <Users
+          users={ this.props.users }
+          totalCount={ this.props.totalCount }
+          limit={ this.props.limit }
+          activePage={ this.props.activePage }
+          displayUsers={ this.props.displayUsers }
+          auth={ this.props.auth }
+          followingUnfollowingInProgress={ this.props.followingUnfollowingInProgress }
+          defaultData={ this.props.defaultData }
 
-        onShowMore={ this.onShowMore }
-        onSetActivePage={ this.onSetActivePage }
-        onChangeDisplayUsers={ this.onChangeDisplayUsers }
-        followByUser={ this.followByUser }
-        unfollowByUser={ unfollowByUser }
-      />
-    </>
+          onShowMore={ this.onShowMore }
+          onSetActivePage={ this.onSetActivePage }
+          onChangeDisplayUsers={ this.onChangeDisplayUsers }
+        />
+      </>
+    )
   }
 
 }

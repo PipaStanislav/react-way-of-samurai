@@ -1,7 +1,7 @@
 import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants'
 import initialStore from './profileInitialState';
 
-const addPost = (state) => {
+const addPost = state => {
   if (!state.newPostText) {
     return;
   }

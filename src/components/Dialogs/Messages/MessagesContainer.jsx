@@ -1,5 +1,5 @@
 import Messages from './Messages';
-import { sendMessage, updateNewMessage } from '../../../utils/actionCreators';
+import { sendMessage, updateNewMessage } from '../../../redux/actionCreators/actionCreators';
 import { connect } from 'react-redux';
 
 const mapStateToProps = ({ messagesPage }) => {

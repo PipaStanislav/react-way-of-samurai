@@ -2,18 +2,17 @@ import styles from './User.module.css';
 import { NavLink } from 'react-router-dom';
 
 const User = (props) => {
-  const { user, onClickFollowUnfollow, followingInProgress } = props;
+  const { user, onClickFollowUnfollow, followingUnfollowingInProgress, defaultData } = props;
   const { avatar, fullName, status, address, isFollow } = user;
-
 
   return (
     <div className={ styles.item }>
       <div className={ styles.avatar }>
-        <NavLink to={ `/profile/${user.id}` }>
-          <img src={ avatar.large.src } alt={ avatar.large.title }/>
+        <NavLink to={ `/profile/${ user.id }` }>
+          <img src={ avatar.large.src || defaultData.avatar.src } alt={ avatar.large.title || defaultData.avatar.alt }/>
         </NavLink>
         <button
-          disabled={ followingInProgress.includes(user.id) }
+          disabled={ followingUnfollowingInProgress.includes(user.id) }
           onClick={ () => onClickFollowUnfollow(isFollow, user.id) }
         >
 

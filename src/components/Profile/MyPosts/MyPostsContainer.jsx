@@ -1,4 +1,4 @@
-import { addPost, updateNewPost } from '../../../utils/actionCreators';
+import { addPost, updateNewPost } from '../../../redux/actionCreators/actionCreators';
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 

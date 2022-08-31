@@ -9,8 +9,10 @@ const generateUserElements = (props) => {
       <UserContainer
         key={ user.id }
         user={ user }
-        followingInProgress={ props.followingInProgress }
-        auth={ props.auth }/>
+        followingUnfollowingInProgress={ props.followingUnfollowingInProgress }
+        auth={ props.auth }
+        defaultData={ props.defaultData }
+      />
     )
   })
 }

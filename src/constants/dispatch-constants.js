@@ -4,6 +4,7 @@ export default {
   },
 
   PROFILE_PAGE: {
+    RE_RENDER: 'RE_RENDER',
     ADD_POST: 'ADD_POST',
     UPDATE_NEW_POST_TEXT: 'UPDATE_NEW_POST_TEXT',
     SET_PROFILE: 'SET_PROFILE',

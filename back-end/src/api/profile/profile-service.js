@@ -25,8 +25,8 @@ class ProfileService {
     return setMetaData({ data: profiles.slice(offset, limit), totalCount: profiles.length });
   }
 
-  getProfile(data) {
-    const user = profiles.find(({ userId }) => userId === Number(data.id));
+  getProfile({ id }) {
+    const user = profiles.find(({ userId }) => userId === Number(id));
 
     return user ? user : { error: 'Profile not exist' };
   }

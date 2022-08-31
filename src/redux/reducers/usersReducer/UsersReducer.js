@@ -5,12 +5,10 @@ import USER_CONSTANTS from '../../../components/Users/constants/userConstants';
 const setUsers = (state, users) => {
   return state.displayUsers === USER_CONSTANTS.DISPLAY_USERS.LIST
     ? { ...state, users: [...state.users, ...users] }
-    : { ...state, users: users };
+    : { ...state, users: [...users] };
 };
 
-const getMetaData = (state, metaData) => {
-  return { ...state, ...metaData };
-};
+const getMetaData = (state, metaData) => ({ ...state, ...metaData });
 
 const follow = (state, userId) => {
   return {
@@ -37,12 +35,7 @@ const displayUsers = (state) => {
   };
 }
 
-const setActivePage = (state, page) => {
-  return {
-    ...state,
-    activePage: page,
-  };
-}
+const setActivePage = (state, page) => ({ ...state, activePage: page });
 
 const setIsFetching = (state, isFetching) => {
   return {
@@ -54,12 +47,12 @@ const setIsFetching = (state, isFetching) => {
   };
 }
 
-const setIsFollowingInProgress = (state, { isFollowingInProgress, userId }) => {
+const setIsFollowingUnfollowingInProgress = (state, { isFollowingUnfollowingInProgress, userId }) => {
   return {
     ...state,
-    followingInProgress: isFollowingInProgress
-      ? [...state.followingInProgress, userId]
-      : state.followingInProgress.filter((id) => id !== userId),
+    followingUnfollowingInProgress: isFollowingUnfollowingInProgress
+      ? [...state.followingUnfollowingInProgress, userId]
+      : state.followingUnfollowingInProgress.filter((id) => id !== userId),
   };
 }
 
@@ -93,7 +86,7 @@ const userReducer = (state = initialStore, action) => {
   }
 
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.FOLLOWING_IN_PROGRESS) {
-    return setIsFollowingInProgress(state, action.data);
+    return setIsFollowingUnfollowingInProgress(state, action.data);
   }
 
   return state;

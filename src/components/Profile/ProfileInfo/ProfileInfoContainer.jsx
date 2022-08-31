@@ -3,18 +3,18 @@ import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import ProfileInfo from './ProfileInfo';
-import profileApiService from '../../../api/profile-api/profile-api-service';
-import { setProfile } from '../../../utils/actionCreators';
+import { getProfile } from '../../../redux/thunkCreators/thunkCreators';
 
-const mapStateToProps = ({ profilePage }) => {
+const mapStateToProps = ({ profilePage, auth }) => {
   return {
+    auth,
     info: profilePage.info,
     profile: profilePage.profile,
     preloader: profilePage.preloader,
   };
 };
 
-const mapDispatchToProps = { setProfile };
+const mapDispatchToProps = { getProfile };
 
 const withRouter = Component => {
   const ComponentWithRouterProps = (props) => {
@@ -31,26 +31,24 @@ const withRouter = Component => {
 }
 
 class ProfileInfoContainer extends React.Component {
-  async componentDidMount() {
-    return this.setProfile(this.props.router.params.id);
+  componentDidMount = () => {
+    const profileId = this.props.router.params.id || this.props.auth.userId || 1;
+
+    return this.setProfile(profileId);
   }
   
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate = (prevProps) => {
     const prevId = prevProps.router.params.id;
     const currId = this.props.router.params.id;
 
     if (prevId && !currId || prevId !== currId) {
-      return this.setProfile();
+      return this.setProfile(this.props.auth.userId);
     }
   }
 
-  setProfile = (id = 1) => {
-    return profileApiService.getProfile({ id }).then((response) => {
-      this.props.setProfile(response);
-    })
-  }
+  setProfile = (id) => this.props.getProfile({ id });
 
-  render() {
+  render = () => {
     return (
       <ProfileInfo { ...this.props }/>
     );

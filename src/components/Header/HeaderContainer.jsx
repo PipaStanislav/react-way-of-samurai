@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
-import authApiService from '../../api/auth-api/auth-api-service';
-import { setAuthData } from '../../utils/actionCreators';
+import { getAuthData } from '../../redux/thunkCreators/thunkCreators';
 
 const mapStateToProps = ({ header, auth }) => {
   return {
@@ -13,21 +12,14 @@ const mapStateToProps = ({ header, auth }) => {
   };
 }
 
-const mapDispatchToProps = { setAuthData };
+const mapDispatchToProps = { getAuthData };
 
 class HeaderContainer extends React.Component {
-  async componentDidMount() {
+  componentDidMount = () => {
     return this.setAuthData();
   }
 
-  setAuthData() {
-    return authApiService.authMe().then((response) => {
-      if (response.error) {
-        throw response.error;
-      }
-      this.props.setAuthData(response.data);
-    })
-  }
+  setAuthData = () => this.props.getAuthData();
 
   render() {
     return (

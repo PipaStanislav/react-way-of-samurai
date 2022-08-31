@@ -1,6 +1,6 @@
 import styles from './Messages.module.css';
 import Message from './Message/Message';
-import { updateNewMessage } from '../../../utils/actionCreators';
+import { updateNewMessage } from '../../../redux/actionCreators/actionCreators';
 
 const Messages = (props) => {
   const { messages, sendMessage, newMessageText, updateNewMessage } = props;

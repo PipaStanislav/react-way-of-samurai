@@ -14,5 +14,11 @@ export default {
     src: preloaderImage,
     alt: 'Spinner',
   },
-  followingInProgress: [],
+  followingUnfollowingInProgress: [],
+  defaultData: {
+    avatar: {
+      src: 'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000',
+      alt: 'Avatar'
+    }
+  }
 };
