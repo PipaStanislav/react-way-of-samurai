@@ -1,8 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 
 import './App.css';
+
 import News from './components/News/News';
 import Music from './components/Music/Music';
+import Login from './components/Login/Login';
 import Settings from './components/Settings/Settings';
 import HeaderContainer from './components/Header/HeaderContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
@@ -35,6 +37,8 @@ const App = (props) => {
           <Route path='/settings' element={ <Settings/> }/>
 
           <Route path='/users' element={ <UsersContainer/> }/>
+
+          <Route path='/login' element={ <Login/> }/>
         </Routes>
       </div>
 

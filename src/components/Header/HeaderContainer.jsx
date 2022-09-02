@@ -15,11 +15,9 @@ const mapStateToProps = ({ header, auth }) => {
 const mapDispatchToProps = { getAuthData };
 
 class HeaderContainer extends React.Component {
-  componentDidMount = () => {
-    return this.setAuthData();
-  }
+  componentDidMount = () => this.getAuthData();
 
-  setAuthData = () => this.props.getAuthData();
+  getAuthData = () => this.props.getAuthData();
 
   render() {
     return (

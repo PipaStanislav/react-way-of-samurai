@@ -1,5 +1,10 @@
-import Dialogs from './Dialogs';
+import React from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+
+
+import Dialogs from './Dialogs';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
 
 const mapStateToProps = ({ messagesPage }) => {
   return {
@@ -7,11 +12,19 @@ const mapStateToProps = ({ messagesPage }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {};
-};
+const mapDispatchToProps = {};
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
-const DialogsContainer = connector(Dialogs)
+class DialogsContainer extends React.Component {
+  render() {
+    return (
+      <Dialogs { ...this.props } />
+    )
+  }
+}
 
-export default DialogsContainer;
+
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withAuthRedirect,
+)(DialogsContainer);

@@ -7,6 +7,8 @@ import Users from './Users';
 import Preloader from '../common/preloader/preloader';
 import { changeDisplayUsers, setActivePage } from '../../redux/actionCreators/actionCreators';
 import { getUsers } from '../../redux/thunkCreators/thunkCreators';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 const mapStateToProps = ({ usersPage, auth }) => {
   return {
@@ -89,4 +91,7 @@ class UsersContainer extends React.Component {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default compose(
+  withAuthRedirect,
+  connect(mapStateToProps, mapDispatchToProps),
+)(UsersContainer)

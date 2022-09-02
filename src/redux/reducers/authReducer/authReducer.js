@@ -2,7 +2,7 @@ import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants'
 import initialState from './authInitialState';
 
 const setAuthData = (state, data) => {
-  return { ...state, ...data, isAuth: true };
+  return { ...state, ...data, isAuth: false };
 };
 
 const authReducer = (state = initialState, action) => {

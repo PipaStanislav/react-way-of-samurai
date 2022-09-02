@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 
 import React from 'react';
 import Profile from './Profile';
+import withAuthRedirect from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
-const mapStateToProps = (props) => {
-  return {};
-};
+const mapStateToProps = (props) => ({});
 
 const mapDispatchToProps = {};
 
@@ -17,4 +17,8 @@ class ProfileContainer extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withAuthRedirect
+)(ProfileContainer);
