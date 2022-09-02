@@ -17,7 +17,8 @@ const profiles = users.map(({ id, firstName, lastName, fullName, avatar }) => {
     lookingForAJobDescription: faker.lorem.sentences(),
     fullName,
     userId: id,
-    avatar
+    avatar,
+    status: faker.lorem.sentence(),
   }
 });
 

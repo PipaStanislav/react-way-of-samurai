@@ -1,5 +1,6 @@
 import styles from './ProfileInfo.module.css';
 import Preloader from '../../common/preloader/preloader';
+import ProfileStatus from './ProfileStatus/ProfileStatus';
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -7,27 +8,31 @@ const ProfileInfo = (props) => {
   }
 
   return (
-    <div className={ styles.profileInfo }>
-      <div className={ styles.backgroundBlock }>
-        <img src={ props.info.background.src } alt={ props.info.background.title }/>
-      </div>
-
+    <div>
       <div className={ styles.descriptionBlock }>
         <div className={ styles.photoSection }>
           <img src={ props.profile.avatar.large.src } alt={ props.profile.avatar.large.title }/>
         </div>
 
         <div className={ styles.infoSection }>
+          <ProfileStatus
+            status={ props.profile.status }
+            userId={ props.profile.userId }
+            updateProfile={ props.updateProfile }
+          />
+
           <div className={ styles.info }><span>Full name: </span> { props.profile.fullName }</div>
           <div className={ styles.info }><span>About Me:</span> { props.profile.aboutMe }</div>
-          <div className={ styles.info }><span>Looking for a job: </span> { props.profile.lookingForAJob ? 'Yes' : 'No' }</div>
+          <div className={ styles.info }>
+            <span>Looking for a job: </span> { props.profile.lookingForAJob ? 'Yes' : 'No' }</div>
           <div className={ styles.info }><span>Job description: </span> { props.profile.lookingForAJobDescription }
           </div>
           {
             Object.keys(props.profile.contacts).map((contactKey, index) => {
               return (
                 <div className={ styles.info } key={ index }>
-                  <span>{ contactKey }: </span> <a href={ props.profile.contacts[contactKey] }>{ props.profile.contacts[contactKey] }</a>
+                  <span>{ contactKey }: </span> <a
+                  href={ props.profile.contacts[contactKey] }>{ props.profile.contacts[contactKey] }</a>
                 </div>
               )
             })

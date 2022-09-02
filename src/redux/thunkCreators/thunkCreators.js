@@ -43,13 +43,21 @@ export const followUnfollowByUser = ({ isFollow, userId, id }) => async (dispatc
   }
 };
 
-export const getProfile = ({ id }) => async (dispatch) => {
-  const profile = await profileApiService.getProfile({ id });
+export const getProfile = (params) => async (dispatch) => {
+  const profile = await profileApiService.getProfile(params);
 
   if (profile) {
     return dispatch(setProfile(profile));
   }
 };
+
+export const updateProfile = (params) => async (dispatch) => {
+  const profile = await profileApiService.updateProfile(params);
+
+  if (profile) {
+    return dispatch(setProfile(profile));
+  }
+}
 
 export const getAuthData = (params) => async (dispatch) => {
   const { data, error } = await authApiService.authMe();

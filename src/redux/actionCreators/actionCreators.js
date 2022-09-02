@@ -2,7 +2,6 @@ import DISPATCH_CONSTANTS from '../../constants/dispatch-constants';
 
 export const setAuthData = data => ({ type: DISPATCH_CONSTANTS.AUTH.SET_AUTH_DATA, data });
 
-export const reRender = () => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.RE_RENDER });
 export const addPost = () => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.ADD_POST });
 export const updateNewPost = text => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.UPDATE_NEW_POST_TEXT, newText: text });
 export const setProfile = profile => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.SET_PROFILE, profile });

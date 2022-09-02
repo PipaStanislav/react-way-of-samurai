@@ -3,18 +3,18 @@ import { connect } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import ProfileInfo from './ProfileInfo';
-import { getProfile } from '../../../redux/thunkCreators/thunkCreators';
+import { getProfile, updateProfile } from '../../../redux/thunkCreators/thunkCreators';
+import { compose } from 'redux';
 
 const mapStateToProps = ({ profilePage, auth }) => {
   return {
     auth,
-    info: profilePage.info,
     profile: profilePage.profile,
     preloader: profilePage.preloader,
   };
 };
 
-const mapDispatchToProps = { getProfile };
+const mapDispatchToProps = { getProfile, updateProfile };
 
 const withRouter = Component => {
   const ComponentWithRouterProps = (props) => {
@@ -55,5 +55,7 @@ class ProfileInfoContainer extends React.Component {
   }
 }
 
-const withRouterProfileInfoContainer = withRouter(ProfileInfoContainer);
-export default connect(mapStateToProps, mapDispatchToProps)(withRouterProfileInfoContainer);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(ProfileInfoContainer)
