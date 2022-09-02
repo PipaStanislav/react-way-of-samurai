@@ -4,13 +4,13 @@ import './App.css';
 
 import News from './components/News/News';
 import Music from './components/Music/Music';
-import Login from './components/Login/Login';
 import Settings from './components/Settings/Settings';
 import HeaderContainer from './components/Header/HeaderContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import SideBarContainer from './components/SideBar/SideBarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
+import LoginContainer from './components/Login/LoginContainer';
 
 const App = (props) => {
   return (
@@ -38,7 +38,7 @@ const App = (props) => {
 
           <Route path='/users' element={ <UsersContainer/> }/>
 
-          <Route path='/login' element={ <Login/> }/>
+          <Route path='/login' element={ <LoginContainer/> }/>
         </Routes>
       </div>
 

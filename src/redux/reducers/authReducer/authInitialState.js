@@ -3,4 +3,6 @@ export default {
   email: null,
   login: null,
   isAuth: false,
+  password: null,
+  isRememberMe: false,
 };

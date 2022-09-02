@@ -11,7 +11,7 @@ class authApiService extends baseApiService {
     super();
   }
 
-  login = ({ id, ...query }) => this.makeRequest(this.METHODS.POST, profileEndpoints.login(id), { data: query });
+  login = query => this.makeRequest(this.METHODS.POST, profileEndpoints.login(), { data: query });
   register = query => this.makeRequest(this.METHODS.POST, profileEndpoints.registration(), { data: query });
   authMe = query => this.makeRequest(this.METHODS.POST, profileEndpoints.authMe(), { data: query });
 }

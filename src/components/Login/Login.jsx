@@ -1,6 +1,12 @@
+import styles from './Login.module.css';
+import LoginForm from './LoginForm/LoginForm';
+
 const Login = props => {
   return (
-    <h1>Login</h1>
+    <div className={ styles.login }>
+      <h1>Login</h1>
+      <LoginForm { ...props }/>
+    </div>
   );
 }
 

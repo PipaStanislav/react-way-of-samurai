@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import Header from './Header';
 import { getAuthData } from '../../redux/thunkCreators/thunkCreators';
+import { logOut } from '../../redux/actionCreators/actionCreators';
 
 const mapStateToProps = ({ header, auth }) => {
   return {
@@ -12,7 +14,7 @@ const mapStateToProps = ({ header, auth }) => {
   };
 }
 
-const mapDispatchToProps = { getAuthData };
+const mapDispatchToProps = { getAuthData, logOut };
 
 class HeaderContainer extends React.Component {
   componentDidMount = () => this.getAuthData();
@@ -21,7 +23,7 @@ class HeaderContainer extends React.Component {
 
   render() {
     return (
-      <Header { ...this.props }/>
+      <Header { ...this.props } />
     );
   }
 }

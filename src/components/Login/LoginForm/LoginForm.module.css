@@ -1,0 +1,21 @@
+.login {
+  padding: 10px;
+  text-align: center;
+}
+
+.loginForm {
+  padding: 10px;
+}
+
+.loginFormElement {
+  padding: 10px;
+}
+
+.notValid {
+  border-radius: 3px;
+  border-color: red;
+}
+
+.notValid::placeholder {
+  color: red;
+}

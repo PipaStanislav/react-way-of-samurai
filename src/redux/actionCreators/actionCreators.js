@@ -1,6 +1,8 @@
 import DISPATCH_CONSTANTS from '../../constants/dispatch-constants';
 
 export const setAuthData = data => ({ type: DISPATCH_CONSTANTS.AUTH.SET_AUTH_DATA, data });
+export const setIsRememberMe = isRememberMe => ({ type: DISPATCH_CONSTANTS.AUTH.SET_AUTH_DATA, isRememberMe });
+export const logOut = () => ({ type: DISPATCH_CONSTANTS.AUTH.LOG_OUT });
 
 export const addPost = () => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.ADD_POST });
 export const updateNewPost = text => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.UPDATE_NEW_POST_TEXT, newText: text });

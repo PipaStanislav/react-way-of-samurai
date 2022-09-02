@@ -6,7 +6,7 @@ import {
   followByUser,
   setIsFetching,
   unfollowByUser,
-  setIsFollowingUnfollowingInProgress,
+  setIsFollowingUnfollowingInProgress, setIsRememberMe,
 } from '../actionCreators/actionCreators';
 import userApiService from '../../api/user-api/user-api-service';
 import profileApiService from '../../api/profile-api/profile-api-service';
@@ -64,6 +64,21 @@ export const getAuthData = (params) => async (dispatch) => {
 
   if (error) {
     throw error;
+  }
+
+  return dispatch(setAuthData(data));
+};
+
+export const login = (params) => async (dispatch) => {
+  const { data, error } = await authApiService.login(params);
+
+  if (error) {
+    throw error;
+  }
+
+  if (params.isRememberMe) {
+    dispatch(setIsRememberMe(params.isRememberMe));
+    dispatch(setAuthData({ ...data, password: params.password }));
   }
 
   return dispatch(setAuthData(data));

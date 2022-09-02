@@ -4,9 +4,12 @@ import { NavLink } from 'react-router-dom';
 const Header = (props) => {
   const profile = (props) => {
     return (
-      <div>
-        <NavLink to={ `/profile/${ props.userId }` }> { props.login } </NavLink>
-      </div>
+      <>
+        <div className={ styles.loginElement }>
+          <NavLink to={ `/profile/${ props.userId }` }> { props.login } </NavLink>
+          <NavLink to={ '/login' } onClick={ props.logOut }> Logout </NavLink>
+        </div>
+      </>
     );
   }
 

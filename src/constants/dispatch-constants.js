@@ -1,6 +1,8 @@
 export default {
   AUTH: {
     SET_AUTH_DATA: 'SET_AUTH_DATA',
+    IS_REMEMBER_ME: 'IS_REMEMBER_ME',
+    LOG_OUT: 'LOG_OUT',
   },
 
   PROFILE_PAGE: {
