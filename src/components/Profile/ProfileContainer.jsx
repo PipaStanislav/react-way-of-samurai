@@ -20,5 +20,5 @@ class ProfileContainer extends React.Component {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  withAuthRedirect
+  // withAuthRedirect
 )(ProfileContainer);

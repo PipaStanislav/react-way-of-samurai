@@ -14,8 +14,6 @@ const withAuthRedirect = (Component) => {
     return <Component { ...props } />;
   }
 
-
-
   return connect(mapStateToPropsForRedirect, mapDispatchToPropsForRedirect)(AuthRedirectComponent);
 }
 

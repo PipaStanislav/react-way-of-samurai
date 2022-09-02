@@ -32,12 +32,14 @@ const withRouter = Component => {
 
 class ProfileInfoContainer extends React.Component {
   componentDidMount = () => {
+    console.log('--------> 111', 111);
     const profileId = this.props.router.params.id || this.props.auth.userId || 1;
 
     return this.setProfile(profileId);
   }
-  
+
   componentDidUpdate = (prevProps) => {
+    console.log('--------> 1000', 1000);
     const prevId = prevProps.router.params.id;
     const currId = this.props.router.params.id;
 
