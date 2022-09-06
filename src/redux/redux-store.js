@@ -7,14 +7,16 @@ import sideBarReducer from './reducers/sideBarReducer/sideBarReducer';
 import headerReducer from './reducers/headerReducer/headerReducer';
 import usersReducer from './reducers/usersReducer/UsersReducer';
 import authReducer from './reducers/authReducer/authReducer';
+import appReducer from './reducers/appReducer/appReducer';
 
 const reducers = combineReducers({
+  app: appReducer,
+  auth: authReducer,
   header: headerReducer,
-  profilePage: profileReducer,
-  messagesPage: dialogReducer,
   sideBar: sideBarReducer,
   usersPage: usersReducer,
-  auth: authReducer,
+  profilePage: profileReducer,
+  messagesPage: dialogReducer,
 })
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

@@ -1,5 +1,7 @@
 import DISPATCH_CONSTANTS from '../../constants/dispatch-constants';
 
+export const setInitializedSuccess = () => ({ type: DISPATCH_CONSTANTS.APP.INITIALIZE_SUCCESS });
+
 export const setAuthData = data => ({ type: DISPATCH_CONSTANTS.AUTH.SET_AUTH_DATA, data });
 export const setIsRememberMe = isRememberMe => ({ type: DISPATCH_CONSTANTS.AUTH.IS_REMEMBER_ME, isRememberMe });
 export const logOut = () => ({ type: DISPATCH_CONSTANTS.AUTH.LOG_OUT });

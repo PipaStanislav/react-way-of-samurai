@@ -13,7 +13,7 @@ import {
   setDialogs,
   setDialogsMetaData,
   setDialog,
-  setFriends,
+  setFriends, setInitializedSuccess,
 } from '../actionCreators/actionCreators';
 import userApiService from '../../api/user-api/user-api-service';
 import profileApiService from '../../api/profile-api/profile-api-service';
@@ -138,4 +138,10 @@ export const sendDialogMessage = (params) => async (dispatch) => {
 export const getFriends = (params) => async (dispatch) => {
   const { data } = await userApiService.getUsers(params)
   dispatch(setFriends(data))
+}
+
+
+export const initializeApp = (params) => async (dispatch) => {
+  await dispatch(getAuthData());
+  dispatch(setInitializedSuccess());
 }
