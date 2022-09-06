@@ -28,7 +28,9 @@ const App = (props) => {
 
           <Route path='/profile/:id' element={ <ProfileContainer/> }/>
 
-          <Route path='/dialogs/*' element={ <DialogsContainer/> }/>
+          <Route path='/dialogs' element={ <DialogsContainer/> }>
+            <Route path=':id' element={ <DialogsContainer/> }/>
+          </Route>
 
           <Route path='/news' element={ <News/> }/>
 

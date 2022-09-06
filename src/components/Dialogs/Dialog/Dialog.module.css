@@ -16,3 +16,9 @@
     color: gold;
 }
 
+.navLink {
+    display: inline-block;
+    position: relative;
+    top: -20px;
+    left: 30px;
+}

@@ -2,11 +2,13 @@
     display: grid;
     grid-template-columns: 2fr 10fr;
     padding: 20px;
+    height: 90%;
 }
 
 .dialogsNavBar {
     padding: 10px;
     color: white;
+    border-right: 1px solid;
 }
 
 .dialogsNavBar .active {

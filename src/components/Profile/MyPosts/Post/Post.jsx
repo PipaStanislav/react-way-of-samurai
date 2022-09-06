@@ -6,7 +6,7 @@ const Post = (props) => {
 
   return (
     <div  className={ styles.item }>
-      <img src={ avatar.src } alt={ avatar.title }/>
+      <img src={ avatar.large.src } alt={ avatar.large.title }/>
 
       { message }
 

@@ -13,3 +13,8 @@
     height: 50px;
     border-radius: 30px;
 }
+
+.navLink a {
+    text-decoration: none;
+    color: white;
+}

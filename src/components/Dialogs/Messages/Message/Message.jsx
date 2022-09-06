@@ -1,8 +1,11 @@
 import styles from './Message.module.css';
 
 const Message = (props) => {
+  const myMessage = props.authUserId === props.message.userId ? styles.myMessage : '';
   return (
-    <div className={ styles.message }>{ props.message }</div>
+    <div className={ myMessage }>
+      <div className={ styles.message }>{ props.message.text }</div>
+    </div>
   )
 }
 

@@ -1,5 +1,8 @@
+import React from 'react';
 import { connect } from 'react-redux';
+
 import SideBar from './SideBar';
+import { getFriends } from '../../redux/thunkCreators/thunkCreators';
 
 const mapStateToProps = ({ sideBar }) => {
   return {
@@ -8,11 +11,18 @@ const mapStateToProps = ({ sideBar }) => {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {};
+const mapDispatchToProps = { getFriends };
+
+class SideBarContainer extends React.Component {
+  componentDidMount() {
+    this.props.getFriends({ offset: this.props.friendsBar.offset, limit: this.props.friendsBar.limit })
+  }
+
+  render() {
+    return (
+      <SideBar { ...this.props }/>
+    );
+  }
 }
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
-const SideBarContainer = connector(SideBar);
-
-export default SideBarContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(SideBarContainer);

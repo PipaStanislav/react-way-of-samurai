@@ -1,4 +1,5 @@
 .message {
+    display: inline-block;
     color: white;
     padding: 10px;
     margin: 10px;
@@ -8,3 +9,6 @@
     background-color: orange;
 }
 
+.myMessage {
+    text-align: right;
+}

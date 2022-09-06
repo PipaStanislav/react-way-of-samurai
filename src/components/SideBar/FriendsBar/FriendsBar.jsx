@@ -1,12 +1,15 @@
 import styles from './FriendsBar.module.css';
+import { NavLink } from 'react-router-dom';
 
 const FriendsBar = (props) => {
-  const friendsElements = props.state.friends.map(({ id, name, avatar }) => {
+  const friendsElements = props.state.friends.map(({ id, firstName, avatar }) => {
     return (
-      <div key={id} className={ styles.item }>
-        <img src={ avatar.src } alt={ avatar.title }/>
+      <div key={ id } className={ styles.item }>
+        <img src={ avatar.large.src } alt={ avatar.large.title }/>
 
-        <div>{ name }</div>
+        <div className={styles.navLink}>
+          <NavLink to={ `/profile/${ id }` }>  { firstName } </NavLink>
+        </div>
       </div>
     )
   })
@@ -15,7 +18,7 @@ const FriendsBar = (props) => {
     <div className={ styles.friendsBar }>
       <h1>{ props.state.title }</h1>
 
-      <div >
+      <div>
         { friendsElements }
       </div>
     </div>

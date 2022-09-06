@@ -1,22 +1,23 @@
 import styles from './Messages.module.css';
 import Message from './Message/Message';
-import { updateNewMessage } from '../../../redux/actionCreators/actionCreators';
+import MessagesForm from './MessagesForm/MessagesForm';
 
 const Messages = (props) => {
-  const { messages, sendMessage, newMessageText, updateNewMessage } = props;
-
-  const messagesElements = messages.map(({ id, message }) => {
+  const messagesElements = props.dialog.messages.map(message => {
     return (
-      <Message id={ id } key={ id } message={ message }/>
+      <Message id={ message.id } key={ message.id } message={ message } authUserId={ props.authUserId }/>
     )
   });
 
-  const onSendMessage = () => {
-    return sendMessage();
-  }
-
-  const onChangeNewMessage = (event) => {
-    return updateNewMessage(event.currentTarget.value);
+  const onSendMessage = (value, { resetForm }) => {
+    resetForm()
+    return props.sendDialogMessage({
+      id: props.dialog.id,
+      organizerId: props.dialog.organizerId,
+      participantId: props.dialog.participantId,
+      userId: props.authUserId,
+      message: value.message
+    });
   }
 
   return (
@@ -25,15 +26,7 @@ const Messages = (props) => {
         { messagesElements }
       </div>
 
-      <div className={ styles.newMessage }>
-        <div>
-          <textarea onChange={ onChangeNewMessage } value={ newMessageText }></textarea>
-        </div>
-
-        <div>
-          <button onClick={ onSendMessage }>Send</button>
-        </div>
-      </div>
+      <MessagesForm onSendMessage={ onSendMessage }/>
     </div>
   )
 }

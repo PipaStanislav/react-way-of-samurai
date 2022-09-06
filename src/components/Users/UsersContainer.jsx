@@ -34,10 +34,10 @@ const mapDispatchToProps = {
 
 class UsersContainer extends React.Component {
   componentDidMount = () => {
-    return this.setUsers();
+    return this.getUsers();
   }
 
-  setUsers = async () => {
+  getUsers = async () => {
     this.props.getUsers(this.getQuery());
   }
 
@@ -51,19 +51,19 @@ class UsersContainer extends React.Component {
   }
 
   onShowMore = () => {
-    return this.setUsers();
+    return this.getUsers();
   }
 
   onChangeDisplayUsers = async () => {
     await this.props.changeDisplayUsers();
 
-    return this.setUsers();
+    return this.getUsers();
   }
 
   onSetActivePage = async pageNumber => {
     await this.props.setActivePage(pageNumber);
 
-    return this.setUsers();
+    return this.getUsers();
   }
 
   render = () => {

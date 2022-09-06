@@ -1,11 +1,10 @@
-const setMetaData = require('../../libs/set-meta-data');
 const userService = require('../user/user-service');
 
 let { auth } = require('../../db');
 
 class AuthService {
   login(data) {
-    const { id, password, ...authData } = auth.find(({ login, email, password }) =>password === data.password && (login === data.login || email === data.email));
+    const { id, password, ...authData } = auth.find(({ login, email, password }) => password === data.password && (login === data.login || email === data.email));
 
     return { data: authData };
   }

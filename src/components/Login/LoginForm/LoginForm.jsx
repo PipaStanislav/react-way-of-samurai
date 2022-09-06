@@ -29,7 +29,7 @@ const Form = ({ values, errors, touched, handleChange, handleBlur, handleSubmit,
       </div>
 
       <div className={ styles.loginFormElement }>
-        <Field type="checkbox" name="isRememberMe"/>
+        <Field type={ "checkbox" } name={ "isRememberMe" }/>
         remember Me
       </div>
 

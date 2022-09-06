@@ -6,11 +6,20 @@ import {
   followByUser,
   setIsFetching,
   unfollowByUser,
-  setIsFollowingUnfollowingInProgress, setIsRememberMe,
+  setIsRememberMe,
+  setProfilePosts,
+  setProfilePostsMetaData,
+  setIsFollowingUnfollowingInProgress,
+  setDialogs,
+  setDialogsMetaData,
+  setDialog,
+  setFriends,
 } from '../actionCreators/actionCreators';
 import userApiService from '../../api/user-api/user-api-service';
 import profileApiService from '../../api/profile-api/profile-api-service';
 import authApiService from '../../api/auth-api/auth-api-service';
+import postApiService from '../../api/post-api/post-api-service';
+import dialogApiService from '../../api/dialog-api/dialog-api-service';
 
 export const getUsers = (params) => async (dispatch) => {
   dispatch(setIsFetching(true));
@@ -78,8 +87,55 @@ export const login = (params) => async (dispatch) => {
 
   if (params.isRememberMe) {
     dispatch(setIsRememberMe(params.isRememberMe));
-    dispatch(setAuthData({ ...data, password: params.password }));
+    return dispatch(setAuthData({ ...data, password: params.password }));
   }
 
   return dispatch(setAuthData(data));
 };
+
+export const getProfilePosts = (params) => async (dispatch) => {
+  dispatch(setIsFetching(true));
+
+  const { data, metaData } = await postApiService.getPosts(params)
+
+  dispatch(setProfilePosts(data));
+  dispatch(setProfilePostsMetaData(metaData));
+
+  dispatch(setIsFetching(false));
+};
+
+export const addProfilePost = (params) => async (dispatch) => {
+  dispatch(setIsFetching(true));
+
+  await postApiService.createPost(params);
+  const { data, metaData } = await postApiService.getPosts({ userId: params.userId })
+
+  dispatch(setProfilePosts(data));
+  dispatch(setProfilePostsMetaData(metaData));
+
+  dispatch(setIsFetching(false));
+};
+
+export const getDialogs = (params) => async (dispatch) => {
+  const { data, metaData } = await dialogApiService.getDialogs(params);
+
+  dispatch(setDialogs(data));
+  dispatch(setDialogsMetaData(metaData));
+};
+
+export const getDialog = (params) => async (dispatch) => {
+  const data = await dialogApiService.getDialog(params);
+
+  dispatch(setDialog(data));
+};
+
+export const sendDialogMessage = (params) => async (dispatch) => {
+  await dialogApiService.addMessage(params);
+  const data = await dialogApiService.getDialog(params)
+  dispatch(setDialog(data));
+};
+
+export const getFriends = (params) => async (dispatch) => {
+  const { data } = await userApiService.getUsers(params)
+  dispatch(setFriends(data))
+}

@@ -1,34 +1,30 @@
 import DISPATCH_CONSTANTS from '../../../constants/dispatch-constants'
 import initialState from './dialogInitialState';
 
-const sendMessage = state => {
-  if (!state.newMessageText) {
-    return;
-  }
 
-  const newMessage = {
-    id: state.messages.length + 1,
-    message: state.newMessageText,
-  }
-
-  return {
-    ...state,
-    newMessageText: '',
-    messages: [...state.messages, newMessage],
-  };
+const setDialogs = (state, dialogs) => {
+  return { ...state, dialogs };
 };
 
-const updateNewMessageText = (state, newText) => {
-  return { ...state, newMessageText: newText };
+const setDialog = (state, dialog) => {
+  return { ...state, dialog };
+};
+
+const setMetaData = (state, metaData) => {
+  return { ...state, metaData };
 };
 
 const dialogReducer = (state = initialState, action) => {
-  if (action.type === DISPATCH_CONSTANTS.DIALOG_PAGE.SEND_MESSAGE) {
-    return sendMessage(state);
+  if (action.type === DISPATCH_CONSTANTS.DIALOG_PAGE.SET_DIALOGS) {
+    return setDialogs(state, action.dialogs);
   }
 
-  if (action.type === DISPATCH_CONSTANTS.DIALOG_PAGE.UPDATE_NEW_MESSAGE_TEXT) {
-    return updateNewMessageText(state, action.newText)
+  if (action.type === DISPATCH_CONSTANTS.DIALOG_PAGE.SET_DIALOG) {
+    return setDialog(state, action.dialog);
+  }
+
+  if (action.type === DISPATCH_CONSTANTS.DIALOG_PAGE.SET_DIALOGS_META_DATA) {
+    return setMetaData(state, action.metaData);
   }
 
   return state;

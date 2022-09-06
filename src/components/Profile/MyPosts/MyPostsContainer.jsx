@@ -1,17 +1,30 @@
-import { addPost, updateNewPost } from '../../../redux/actionCreators/actionCreators';
-import MyPosts from './MyPosts';
+import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 
-const mapStateToProps = ({ profilePage }) => {
+import MyPosts from './MyPosts';
+import { getProfilePosts, addProfilePost } from '../../../redux/thunkCreators/thunkCreators';
+import withRouter from '../../../hoc/withRouter';
+
+const mapStateToProps = ({ profilePage, auth }) => {
   return {
     posts: profilePage.posts,
     newPostText: profilePage.newPostText,
+    authUserId: auth.userId,
   };
 }
 
-const mapDispatchToProps = { addPost, updateNewPost };
+const mapDispatchToProps = { addProfilePost, getProfilePosts };
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
-const MyPostsContainer = connector(MyPosts);
+class MyPostsContainer extends React.Component {
+  render() {
+    return (
+      <MyPosts { ...this.props } userId={ this.props.router.params.id }/>
+    );
+  }
+}
 
-export default MyPostsContainer;
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(MyPostsContainer);

@@ -1,18 +1,18 @@
 import DISPATCH_CONSTANTS from '../../constants/dispatch-constants';
 
 export const setAuthData = data => ({ type: DISPATCH_CONSTANTS.AUTH.SET_AUTH_DATA, data });
-export const setIsRememberMe = isRememberMe => ({ type: DISPATCH_CONSTANTS.AUTH.SET_AUTH_DATA, isRememberMe });
+export const setIsRememberMe = isRememberMe => ({ type: DISPATCH_CONSTANTS.AUTH.IS_REMEMBER_ME, isRememberMe });
 export const logOut = () => ({ type: DISPATCH_CONSTANTS.AUTH.LOG_OUT });
 
-export const addPost = () => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.ADD_POST });
-export const updateNewPost = text => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.UPDATE_NEW_POST_TEXT, newText: text });
-export const setProfile = profile => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.SET_PROFILE, profile });
+export const setFriends = friends => ({ type: DISPATCH_CONSTANTS.SIDE_BAR.SET_FRIENDS, friends });
 
-export const sendMessage = () => ({ type: DISPATCH_CONSTANTS.DIALOG_PAGE.SEND_MESSAGE });
-export const updateNewMessage = text => ({
-  type: DISPATCH_CONSTANTS.DIALOG_PAGE.UPDATE_NEW_MESSAGE_TEXT,
-  newText: text
-});
+export const setProfile = profile => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.SET_PROFILE, profile });
+export const setProfilePosts = profilePosts => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.SET_PROFILE_POSTS, profilePosts });
+export const setProfilePostsMetaData = metaData => ({ type: DISPATCH_CONSTANTS.PROFILE_PAGE.SET_META_DATA, metaData });
+
+export const setDialogs = dialogs => ({ type: DISPATCH_CONSTANTS.DIALOG_PAGE.SET_DIALOGS, dialogs });
+export const setDialog = dialog => ({ type: DISPATCH_CONSTANTS.DIALOG_PAGE.SET_DIALOG, dialog });
+export const setDialogsMetaData = metaData => ({ type: DISPATCH_CONSTANTS.DIALOG_PAGE.SET_DIALOGS_META_DATA, metaData });
 
 export const setUsers = users => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_USERS, users });
 export const setMetaData = metaData => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_META_DATA, metaData });

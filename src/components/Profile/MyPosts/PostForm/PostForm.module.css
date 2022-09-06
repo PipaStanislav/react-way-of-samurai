@@ -1,0 +1,12 @@
+.postForm {
+    padding: 10px;
+}
+
+.formElement {
+    margin: 10px
+}
+
+.formElement textarea {
+    min-width: 50%;
+    min-height: 100px;
+}

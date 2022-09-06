@@ -4,7 +4,7 @@ let { users, followers } = require('../../db');
 
 class UserService {
   createUser(data) {
-    const newUser = { ...data, id: users.length + 1 };
+    const newUser = { ...data, id: users[users.length - 1].id + 1 || 1};
     users.push(newUser);
 
     return { newUser };

@@ -1,17 +1,35 @@
-import Messages from './Messages';
-import { sendMessage, updateNewMessage } from '../../../redux/actionCreators/actionCreators';
+import React from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ messagesPage }) => {
+import Messages from './Messages';
+import { getDialog, sendDialogMessage } from '../../../redux/thunkCreators/thunkCreators';
+import withRouter from '../../../hoc/withRouter';
+
+const mapStateToProps = ({ messagesPage, auth }) => {
   return {
-    messages: messagesPage.messages,
-    newMessageText: messagesPage.newMessageText,
+    dialog: messagesPage.dialog,
+    authUserId: auth.userId,
   };
 };
 
-const mapDispatchToProps = { sendMessage, updateNewMessage }
+const mapDispatchToProps = { sendDialogMessage, getDialog }
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
-const MessagesContainer = connector(Messages);
+class MessagesContainer extends React.Component {
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.router.params.id !== this.props.router.params.id) {
+      this.props.getDialog({ id: this.props.router.params.id, userId: this.props.authUserId })
+    }
+  }
 
-export default MessagesContainer;
+  render() {
+    return (
+      <>{ this.props.dialog && <Messages { ...this.props }/> }</>
+    );
+  }
+}
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(MessagesContainer);
