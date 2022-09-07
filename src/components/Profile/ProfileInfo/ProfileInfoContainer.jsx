@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import ProfileInfo from './ProfileInfo';
 import withRouter from '../../../hoc/withRouter';
-import { getProfile, updateProfile } from '../../../redux/thunkCreators/thunkCreators';
+import { updateProfile } from '../../../redux/thunkCreators/thunkCreators';
 
 const mapStateToProps = ({ profilePage, auth }) => {
   return {
@@ -14,7 +14,7 @@ const mapStateToProps = ({ profilePage, auth }) => {
   };
 };
 
-const mapDispatchToProps = { getProfile, updateProfile };
+const mapDispatchToProps = { updateProfile };
 
 class ProfileInfoContainer extends React.Component {
   render = () => {

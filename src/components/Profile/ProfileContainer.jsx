@@ -25,16 +25,8 @@ class ProfileContainer extends React.Component {
     return this.props.getProfilePosts(id)
   }
 
-  componentDidUpdate = (prevProps) => {
-    let id;
-    const prevId = prevProps.router.params.id;
-    const currId = this.props.router.params.id;
-
-    if (!currId) {
-      id = this.props.auth.userId
-    } else if (prevId !== currId) {
-      id = currId
-    }
+  componentDidUpdate = () => {
+    const id = this.props.router.params.id || this.props.auth.userId;
 
     this.setProfile(id);
     this.setPosts({ userId: id });
