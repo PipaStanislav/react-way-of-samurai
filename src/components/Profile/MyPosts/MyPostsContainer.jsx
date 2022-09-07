@@ -19,7 +19,7 @@ const mapDispatchToProps = { addProfilePost, getProfilePosts };
 class MyPostsContainer extends React.Component {
   render() {
     return (
-      <MyPosts { ...this.props } userId={ this.props.router.params.id }/>
+      <MyPosts { ...this.props } userId={ this.props.router.params.id || this.props.authUserId }/>
     );
   }
 }

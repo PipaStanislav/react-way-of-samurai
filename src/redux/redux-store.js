@@ -8,9 +8,11 @@ import headerReducer from './reducers/headerReducer/headerReducer';
 import usersReducer from './reducers/usersReducer/UsersReducer';
 import authReducer from './reducers/authReducer/authReducer';
 import appReducer from './reducers/appReducer/appReducer';
+import preloaderReducer from './reducers/preloaderReducer/preloaderReducer';
 
 const reducers = combineReducers({
   app: appReducer,
+  preloader: preloaderReducer,
   auth: authReducer,
   header: headerReducer,
   sideBar: sideBarReducer,

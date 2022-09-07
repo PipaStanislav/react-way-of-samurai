@@ -2,6 +2,8 @@ import DISPATCH_CONSTANTS from '../../constants/dispatch-constants';
 
 export const setInitializedSuccess = () => ({ type: DISPATCH_CONSTANTS.APP.INITIALIZE_SUCCESS });
 
+export const setIsFetching = isFetching => ({ type: DISPATCH_CONSTANTS.PRELOADER.SET_IS_FETCHING, isFetching });
+
 export const setAuthData = data => ({ type: DISPATCH_CONSTANTS.AUTH.SET_AUTH_DATA, data });
 export const setIsRememberMe = isRememberMe => ({ type: DISPATCH_CONSTANTS.AUTH.IS_REMEMBER_ME, isRememberMe });
 export const logOut = () => ({ type: DISPATCH_CONSTANTS.AUTH.LOG_OUT });
@@ -22,5 +24,4 @@ export const followByUser = userId => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.FOL
 export const unfollowByUser = userId => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.UNFOLLOW, userId });
 export const changeDisplayUsers = () => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.CHANGE_DISPLAY_USERS });
 export const setActivePage = pageNumber => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_ACTIVE_PAGE, pageNumber });
-export const setIsFetching = isFetching => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_IS_FETCHING, isFetching });
 export const setIsFollowingUnfollowingInProgress = data => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.FOLLOWING_IN_PROGRESS, data });

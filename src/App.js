@@ -16,12 +16,12 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import LoginContainer from './components/Login/LoginContainer';
 import { initializeApp } from './redux/thunkCreators/thunkCreators';
 import withRouter from './hoc/withRouter';
-import Preloader from './components/common/preloader/preloader';
+import Preloader from './components/common/Preloader/Preloader';
 
-const mapStateToProps = props => {
+const mapStateToProps = state => {
   return {
-    initialized: props.app.initialized,
-    preloader: props.profilePage.preloader,
+    initialized: state.app.initialized,
+    preloader: state.preloader,
   };
 };
 
@@ -48,8 +48,6 @@ class App extends React.Component {
             <Route path='/profile' element={ <ProfileContainer/> }>
               <Route path=':id' element={ <ProfileContainer/> }/>
             </Route>
-
-            <Route path='/profile/:id' element={ <ProfileContainer/> }/>
 
             <Route path='/dialogs' element={ <DialogsContainer/> }>
               <Route path=':id' element={ <DialogsContainer/> }/>

@@ -13,7 +13,8 @@ import {
   setDialogs,
   setDialogsMetaData,
   setDialog,
-  setFriends, setInitializedSuccess,
+  setFriends,
+  setInitializedSuccess,
 } from '../actionCreators/actionCreators';
 import userApiService from '../../api/user-api/user-api-service';
 import profileApiService from '../../api/profile-api/profile-api-service';
@@ -21,7 +22,7 @@ import authApiService from '../../api/auth-api/auth-api-service';
 import postApiService from '../../api/post-api/post-api-service';
 import dialogApiService from '../../api/dialog-api/dialog-api-service';
 
-export const getUsers = (params) => async (dispatch) => {
+export const requestUsers = (params) => async (dispatch) => {
   dispatch(setIsFetching(true));
 
   const { data, metaData } = await userApiService.getUsers(params)

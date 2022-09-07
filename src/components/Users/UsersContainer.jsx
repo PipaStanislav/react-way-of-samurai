@@ -1,44 +1,33 @@
 import React from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import USER_CONSTANTS from './constants/userConstants';
 
 import Users from './Users';
-import Preloader from '../common/preloader/preloader';
-import { changeDisplayUsers, setActivePage } from '../../redux/actionCreators/actionCreators';
-import { getUsers } from '../../redux/thunkCreators/thunkCreators';
+import Preloader from '../common/Preloader/Preloader';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
-import { compose } from 'redux';
+import getStateToProps from '../../redux/selectors/userSelectors';
+import { requestUsers } from '../../redux/thunkCreators/thunkCreators';
+import { changeDisplayUsers, setActivePage } from '../../redux/actionCreators/actionCreators';
 
-const mapStateToProps = ({ usersPage, auth }) => {
-  return {
-    auth,
-    users: usersPage.users,
-    limit: usersPage.limit,
-    offset: usersPage.offset,
-    count: usersPage.count,
-    totalCount: usersPage.totalCount,
-    displayUsers: usersPage.displayUsers,
-    activePage: usersPage.activePage,
-    preloader: usersPage.preloader,
-    followingUnfollowingInProgress: usersPage.followingUnfollowingInProgress,
-    defaultData: usersPage.defaultData,
-  };
+const mapStateToProps = state => {
+  return getStateToProps(state);
 };
 
 const mapDispatchToProps = {
   setActivePage,
   changeDisplayUsers,
-  getUsers,
+  requestUsers,
 };
 
 class UsersContainer extends React.Component {
   componentDidMount = () => {
-    return this.getUsers();
+    return this.requestUsers();
   }
 
-  getUsers = async () => {
-    this.props.getUsers(this.getQuery());
+  requestUsers = async () => {
+    this.props.requestUsers(this.getQuery());
   }
 
   getQuery = () => {
@@ -51,26 +40,29 @@ class UsersContainer extends React.Component {
   }
 
   onShowMore = () => {
-    return this.getUsers();
+    return this.requestUsers();
   }
 
   onChangeDisplayUsers = async () => {
     await this.props.changeDisplayUsers();
 
-    return this.getUsers();
+    return this.requestUsers();
   }
 
   onSetActivePage = async pageNumber => {
     await this.props.setActivePage(pageNumber);
 
-    return this.getUsers();
+    return this.requestUsers();
   }
 
   render = () => {
-    return (
-      <>
-        { this.props.preloader.isFetching ? <Preloader preloader={ this.props.preloader }/> : null }
+    if (this.props.preloader.isFetching) {
+      return (
+        <Preloader preloader={this.props.preloader}/>
+      );
+    }
 
+    return (
         <Users
           users={ this.props.users }
           totalCount={ this.props.totalCount }
@@ -85,7 +77,6 @@ class UsersContainer extends React.Component {
           onSetActivePage={ this.onSetActivePage }
           onChangeDisplayUsers={ this.onChangeDisplayUsers }
         />
-      </>
     )
   }
 

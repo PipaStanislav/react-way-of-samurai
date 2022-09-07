@@ -1,16 +1,16 @@
 import React from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import { compose } from 'redux';
 import ProfileInfo from './ProfileInfo';
 import withRouter from '../../../hoc/withRouter';
 import { updateProfile } from '../../../redux/thunkCreators/thunkCreators';
 
-const mapStateToProps = ({ profilePage, auth }) => {
+const mapStateToProps = ({ profilePage, auth, preloader }) => {
   return {
     auth,
     profile: profilePage.profile,
-    preloader: profilePage.preloader,
+    preloader,
   };
 };
 

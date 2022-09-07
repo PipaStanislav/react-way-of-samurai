@@ -15,24 +15,27 @@ const mapDispatchToProps = { getProfile, getProfilePosts };
 
 class ProfileContainer extends React.Component {
   componentDidMount = () => {
-    const profileId = this.props.router.params.id || this.props.auth.userId;
-
-    this.setProfile(profileId);
-    this.setPosts({ userId: profileId });
+    return this.setProfileAndPosts(this.props.router.params.id || this.props.auth.userId)
   }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.router.params.id !== this.props.router.params.id) {
+      return this.setProfileAndPosts(this.props.router.params.id || this.props.auth.userId)
+    }
+  }
+
+  setProfile = (id) => {
+    return this.props.getProfile({ id })
+  };
 
   setPosts = (id) => {
     return this.props.getProfilePosts(id)
   }
 
-  componentDidUpdate = () => {
-    const id = this.props.router.params.id || this.props.auth.userId;
-
-    this.setProfile(id);
-    this.setPosts({ userId: id });
+  setProfileAndPosts = async (id) => {
+    await this.setProfile(id);
+    await this.setPosts({ userId: id });
   }
-
-  setProfile = (id) => this.props.getProfile({ id });
 
   render() {
     return (

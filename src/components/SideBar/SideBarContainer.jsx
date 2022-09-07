@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 
 import SideBar from './SideBar';
 import { getFriends } from '../../redux/thunkCreators/thunkCreators';
+import getStateToProps from '../../redux/selectors/sideBarSelector';
 
-const mapStateToProps = ({ sideBar }) => {
-  return {
-    navBar: sideBar.navBar,
-    friendsBar: sideBar.friendsBar,
-  };
+const mapStateToProps = state => {
+  return getStateToProps(state);
 }
 
 const mapDispatchToProps = { getFriends };

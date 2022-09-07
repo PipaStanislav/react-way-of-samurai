@@ -37,15 +37,7 @@ const displayUsers = (state) => {
 
 const setActivePage = (state, page) => ({ ...state, activePage: page });
 
-const setIsFetching = (state, isFetching) => {
-  return {
-    ...state,
-    preloader: {
-      ...state.preloader,
-      isFetching,
-    }
-  };
-}
+
 
 const setIsFollowingUnfollowingInProgress = (state, { isFollowingUnfollowingInProgress, userId }) => {
   return {
@@ -79,10 +71,6 @@ const userReducer = (state = initialStore, action) => {
 
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.SET_ACTIVE_PAGE) {
     return setActivePage(state, action.pageNumber);
-  }
-
-  if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.SET_IS_FETCHING) {
-    return setIsFetching(state, action.isFetching);
   }
 
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.FOLLOWING_IN_PROGRESS) {
