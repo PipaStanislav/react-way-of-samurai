@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import MyPosts from './MyPosts';
-import { getProfilePosts, addProfilePost } from '../../../redux/thunkCreators/thunkCreators';
+import { addProfilePost, getProfilePosts } from '../../../redux/thunkCreators/thunkCreators';
 import withRouter from '../../../hoc/withRouter';
 
 const mapStateToProps = ({ profilePage, auth }) => {
@@ -16,15 +16,17 @@ const mapStateToProps = ({ profilePage, auth }) => {
 
 const mapDispatchToProps = { addProfilePost, getProfilePosts };
 
-class MyPostsContainer extends React.Component {
-  render() {
-    return (
-      <MyPosts { ...this.props } userId={ this.props.router.params.id || this.props.authUserId }/>
-    );
-  }
+const areEqual = (prevProps, nextProps) => {
+  return JSON.stringify(prevProps) !== JSON.stringify(nextProps);
+}
+
+const MyPostsContainer = (props) => {
+  return (
+    <MyPosts { ...props } userId={ props.router.params.id || props.authUserId }/>
+  );
 }
 
 export default compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps)
-)(MyPostsContainer);
+)(React.memo(MyPostsContainer, areEqual));
