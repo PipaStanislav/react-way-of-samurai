@@ -12,6 +12,7 @@ class ProfileStatus extends React.Component {
       editable: false,
     };
   }
+
   componentDidMount = () => {
     if (this.props.auth.userId === this.props.profileUserId) {
       return this.setState({ editable: true });
@@ -19,12 +20,29 @@ class ProfileStatus extends React.Component {
     return this.setState({ editable: false });
   }
 
+  componentDidUpdate = () => {
+    if (this.props.auth.userId === this.props.profileUserId) {
+      if (!this.state.editable) {
+        return this.setState({ editable: true, status: this.props.status });
+      }
+    }
+
+    if (this.props.auth.userId !== this.props.profileUserId) {
+      if (this.state.editable) {
+        return this.setState({ editable: false, status: this.props.status });
+      }
+    }
+  }
+
 
   changeStatusEditMode = () => {
-    this.setState({ editeMode: !this.state.editeMode });
+    if (this.state.editable) {
+      this.setState({ editeMode: !this.state.editeMode });
 
-    if (this.state.editeMode) {
-      return this.props.updateProfile({ id: this.props.auth.userId, status: this.state.status });
+      if (this.state.editeMode) {
+        console.log('--------> 2', 2);
+        return this.props.updateProfile({ id: this.props.auth.userId, status: this.state.status });
+      }
     }
   }
 
