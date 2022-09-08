@@ -1,74 +1,65 @@
-import React from 'react';
-
 import styles from './ProfileStatus.module.css';
+import { useEffect, useState } from 'react';
 
-class ProfileStatus extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      editeMode: false,
-      status: this.props.status,
-      editable: false,
-    };
+const setProfileInState = ({ props, setIsEditable }) => () => {
+  if (props.auth.userId === props.profileUserId) {
+    return setIsEditable(true);
   }
 
-  componentDidMount = () => {
-    if (this.props.auth.userId === this.props.profileUserId) {
-      return this.setState({ editable: true });
-    }
-    return this.setState({ editable: false });
+  return setIsEditable(false);
+}
+
+const updateStateAfterChangesProfile = ({ props, setIsEditable, setStatus }) => () => {
+  if (props.auth.userId === props.profileUserId) {
+      setIsEditable(true);
+      setStatus(props.status)
   }
 
-  componentDidUpdate = () => {
-    if (this.props.auth.userId === this.props.profileUserId) {
-      if (!this.state.editable) {
-        return this.setState({ editable: true, status: this.props.status });
-      }
-    }
-
-    if (this.props.auth.userId !== this.props.profileUserId) {
-      if (this.state.editable) {
-        return this.setState({ editable: false, status: this.props.status });
-      }
-    }
+  if (props.auth.userId !== props.profileUserId) {
+      setIsEditable(false);
+      setStatus(props.status)
   }
+}
 
+const ProfileStatus = props => {
+  const [editeMode, setEditMode] = useState(false);
+  const [isEditable, setIsEditable] = useState(false);
+  const [status, setStatus] = useState(props.status);
 
-  changeStatusEditMode = () => {
-    if (this.state.editable) {
-      this.setState({ editeMode: !this.state.editeMode });
+  useEffect(setProfileInState({ props, setIsEditable }));
+  useEffect(updateStateAfterChangesProfile({ props, setIsEditable, setStatus}), [props.status]);
 
-      if (this.state.editeMode) {
-        console.log('--------> 2', 2);
-        return this.props.updateProfile({ id: this.props.auth.userId, status: this.state.status });
+  const changeStatusEditMode = () => {
+    if (isEditable) {
+      setEditMode(!editeMode);
+
+      if (editeMode) {
+        return props.updateProfile({ id: props.auth.userId, status });
       }
     }
   }
 
-  onChangeProfileStatus = (event) => {
-    return this.setState({ status: event.currentTarget.value });
+  const onChangeProfileStatus = (event) => {
+    return setStatus(event.currentTarget.value);
   }
 
-  render() {
-    return (
-      <div className={ styles.status }>
-        <span>Status:</span>
-        {
-          this.state.editeMode && this.state.editable
-            ?
-            <div className={ styles.statusElement }>
-              <input autoFocus={ true } onBlur={ this.changeStatusEditMode } onChange={ this.onChangeProfileStatus }
-                     value={ this.state.status }/>
-            </div>
-            :
-            <div className={ styles.statusElement }>
-              <span onDoubleClick={ this.changeStatusEditMode }>{ this.props.status || '---' }</span>
-            </div>
-        }
-      </div>
-    );
-  }
+  return (
+    <div className={ styles.status }>
+      <span>Status:</span>
+      {
+        editeMode && isEditable
+          ?
+          <div className={ styles.statusElement }>
+            <input autoFocus={ true } onBlur={ changeStatusEditMode } onChange={ onChangeProfileStatus }
+                   value={ status }/>
+          </div>
+          :
+          <div className={ styles.statusElement }>
+            <span onDoubleClick={ changeStatusEditMode }>{ props.status || '---' }</span>
+          </div>
+      }
+    </div>
+  );
 }
 
 
