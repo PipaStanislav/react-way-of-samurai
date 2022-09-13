@@ -8,7 +8,7 @@ const setUsers = (state, users) => {
     : { ...state, users: [...users] };
 };
 
-const getMetaData = (state, metaData) => ({ ...state, ...metaData });
+const setMetaData = (state, metaData) => ({ ...state, ...metaData });
 
 const follow = (state, userId) => {
   return {
@@ -54,7 +54,7 @@ const userReducer = (state = initialStore, action) => {
   }
 
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.SET_META_DATA) {
-    return getMetaData(state, action.metaData);
+    return setMetaData(state, action.metaData);
   }
 
   if (action.type === DISPATCH_CONSTANTS.USERS_PAGE.FOLLOW) {
