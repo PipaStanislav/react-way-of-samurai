@@ -2,11 +2,12 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-
-import Dialogs from './Dialogs';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 import { getDialogs } from '../../redux/thunkCreators/thunkCreators';
 import withRouter from '../../hoc/withRouter';
+import withReactLazy from '../../hoc/withReactLazy';
+
+const Dialogs = React.lazy(() => import('./Dialogs'));
 
 const mapStateToProps = ({ messagesPage, auth }) => {
   return {
@@ -33,5 +34,6 @@ class DialogsContainer extends React.Component {
 export default compose(
   withRouter,
   withAuthRedirect,
+  withReactLazy,
   connect(mapStateToProps, mapDispatchToProps),
 )(DialogsContainer);

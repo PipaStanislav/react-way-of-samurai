@@ -2,9 +2,9 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import React from 'react';
 
-const mapStateToPropsForRedirect = (props) => ({ isAuth: props.auth.isAuth });
+const mapStateToProps = (props) => ({});
 
-const mapDispatchToPropsForRedirect = {};
+const mapDispatchToProps = {};
 
 const withRouter = Component => {
   const ComponentWithRouterProps = (props) => {
@@ -16,7 +16,7 @@ const withRouter = Component => {
       <Component { ...props } router={ { location, navigate, params } }/>
     );
   };
-  return connect(mapStateToPropsForRedirect, mapDispatchToPropsForRedirect)(ComponentWithRouterProps);
+  return connect(mapStateToProps, mapDispatchToProps)(ComponentWithRouterProps);
 }
 
 export default withRouter;

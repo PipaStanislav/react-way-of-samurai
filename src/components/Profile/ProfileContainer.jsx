@@ -1,11 +1,13 @@
+import React from 'react';
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import React from 'react';
-import Profile from './Profile';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
-import { compose } from 'redux';
 import withRouter from '../../hoc/withRouter';
 import { getProfile, getProfilePosts } from '../../redux/thunkCreators/thunkCreators';
+import withReactLazy from '../../hoc/withReactLazy';
+
+const Profile = React.lazy(() => import('./Profile'));
 
 const mapStateToProps = (props) => ({
   auth: props.auth
@@ -48,5 +50,6 @@ class ProfileContainer extends React.Component {
 export default compose(
   withRouter,
   withAuthRedirect,
+  withReactLazy,
   connect(mapStateToProps, mapDispatchToProps),
 )(ProfileContainer);
