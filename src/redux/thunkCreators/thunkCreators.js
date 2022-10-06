@@ -15,12 +15,15 @@ import {
   setDialog,
   setFriends,
   setInitializedSuccess,
+  setMusics,
+  setMusicsMetaData,
 } from '../actionCreators/actionCreators';
 import userApiService from '../../api/user-api/user-api-service';
 import profileApiService from '../../api/profile-api/profile-api-service';
 import authApiService from '../../api/auth-api/auth-api-service';
 import postApiService from '../../api/post-api/post-api-service';
 import dialogApiService from '../../api/dialog-api/dialog-api-service';
+import musicApiService from '../../api/music-api/music-api-service';
 
 export const requestUsers = (params) => async (dispatch) => {
   dispatch(setIsFetching(true));
@@ -139,10 +142,16 @@ export const sendDialogMessage = (params) => async (dispatch) => {
 export const getFriends = (params) => async (dispatch) => {
   const { data } = await userApiService.getUsers(params)
   dispatch(setFriends(data))
-}
-
+};
 
 export const initializeApp = (params) => async (dispatch) => {
   await dispatch(getAuthData());
   dispatch(setInitializedSuccess());
-}
+};
+
+export const getMusics = (params) => async (dispatch) => {
+  const result = await musicApiService.getMusics(params);
+
+  await dispatch(setMusics(result.data));
+  await dispatch(setMusicsMetaData(result.metaData));
+};

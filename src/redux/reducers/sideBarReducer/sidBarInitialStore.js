@@ -5,7 +5,6 @@ export default {
     { id: 3, to: 'news', title: 'News', hasPadding: false },
     { id: 4, to: 'music', title: 'Music', hasPadding: false },
     { id: 5, to: 'users', title: 'Find users', hasPadding: true },
-    { id: 6, to: 'settings', title: 'Settings', hasPadding: true },
   ],
 
   friendsBar: {

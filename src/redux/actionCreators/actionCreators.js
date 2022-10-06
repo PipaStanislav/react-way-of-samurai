@@ -25,3 +25,6 @@ export const unfollowByUser = userId => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.U
 export const changeDisplayUsers = () => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.CHANGE_DISPLAY_USERS });
 export const setActivePage = pageNumber => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.SET_ACTIVE_PAGE, pageNumber });
 export const setIsFollowingUnfollowingInProgress = data => ({ type: DISPATCH_CONSTANTS.USERS_PAGE.FOLLOWING_IN_PROGRESS, data });
+
+export const setMusics = musics => ({type: DISPATCH_CONSTANTS.MUSIC_PAGE.SET_MUSICS, musics});
+export const setMusicsMetaData = metaData => ({type: DISPATCH_CONSTANTS.MUSIC_PAGE.SET_MUSICS_META_DATA, metaData});

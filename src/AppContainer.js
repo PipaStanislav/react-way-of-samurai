@@ -6,8 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
 import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
+import MusicContainer from './components/Music/MusicContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import SideBarContainer from './components/SideBar/SideBarContainer';
@@ -55,9 +54,7 @@ class App extends React.Component {
 
             <Route path='/news' element={ <News/> }/>
 
-            <Route path='/music' element={ <Music/> }/>
-
-            <Route path='/settings' element={ <Settings/> }/>
+            <Route path='/music' element={ <MusicContainer/> }/>
 
             <Route path='/users' element={ <UsersContainer/> }/>
 

@@ -29,4 +29,4 @@ const MyPostsContainer = (props) => {
 export default compose(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps)
-)(React.memo(MyPostsContainer, areEqual));
+)(MyPostsContainer, areEqual);

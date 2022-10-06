@@ -4,6 +4,7 @@ const auth = require('./auth');
 const followers = require('./follower');
 const posts = require('./posts');
 const dialogs = require('./dialogs');
+const musics = require('./musics');
 
 
 module.exports = {
@@ -13,4 +14,5 @@ module.exports = {
   followers,
   posts,
   dialogs,
+  musics,
 }

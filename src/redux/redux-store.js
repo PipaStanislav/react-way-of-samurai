@@ -14,6 +14,7 @@ import usersReducer from './reducers/usersReducer/usersReducer';
 import authReducer from './reducers/authReducer/authReducer';
 import appReducer from './reducers/appReducer/appReducer';
 import preloaderReducer from './reducers/preloaderReducer/preloaderReducer';
+import musicReducer from './reducers/musicReducer/musicReducer';
 
 const reducers = combineReducers({
   app: appReducer,
@@ -24,6 +25,7 @@ const reducers = combineReducers({
   usersPage: usersReducer,
   profilePage: profileReducer,
   messagesPage: dialogReducer,
+  musicPage: musicReducer,
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
