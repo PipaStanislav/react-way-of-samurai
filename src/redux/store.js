@@ -1,4 +1,4 @@
-import DISPATCH_CONSTANTS from '../constants/dispatch-constants';
+import DISPATCH_CONSTANTS from '../constants/dispatch/dispatch-constants';
 import profileReducer from './reducers/profileReducer/profileReducer';
 import dialogReducer from './reducers/dialogReducer/dialogReducer';
 import sideBarReducer from './reducers/sideBarReducer/sideBarReducer';

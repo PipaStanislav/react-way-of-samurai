@@ -10,7 +10,7 @@ import profileReducer from './reducers/profileReducer/profileReducer';
 import dialogReducer from './reducers/dialogReducer/dialogReducer';
 import sideBarReducer from './reducers/sideBarReducer/sideBarReducer';
 import headerReducer from './reducers/headerReducer/headerReducer';
-import usersReducer from './reducers/usersReducer/usersReducer';
+import usersReducer from './reducers/userReducer/userReducer';
 import authReducer from './reducers/authReducer/authReducer';
 import appReducer from './reducers/appReducer/appReducer';
 import preloaderReducer from './reducers/preloaderReducer/preloaderReducer';
