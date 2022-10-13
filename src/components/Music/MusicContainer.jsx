@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 
 import Music from './Music';
-import { getMusics } from '../../redux/thunkCreators/thunkCreators';
+import { getMusics } from '../../redux/thunk-creators/thunk-creators';
 
 const mapStateToProps = ({ musicPage }) => ({ musicPage });
 const mapDispatchToProps = { getMusics };

@@ -7,9 +7,9 @@ import USER_CONSTANTS from './constants/userConstants';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
-import getStateToProps from '../../redux/selectors/userSelectors';
-import { requestUsers } from '../../redux/thunkCreators/thunkCreators';
-import { changeDisplayUsers, setActivePage } from '../../redux/actionCreators/actionCreators';
+import getStateToProps from '../../redux/user/user-selectors';
+import { requestUsers } from '../../redux/thunk-creators/thunk-creators';
+import { changeDisplayUsers, setActivePage } from '../../redux/action-creators/action-creators';
 
 const mapStateToProps = state => {
   return getStateToProps(state);

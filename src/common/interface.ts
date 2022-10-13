@@ -1,5 +1,3 @@
-interface ActionInterface {
+export interface ActionInterface {
   type: string,
 }
-
-export default ActionInterface;

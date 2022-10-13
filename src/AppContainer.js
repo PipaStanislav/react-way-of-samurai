@@ -13,7 +13,7 @@ import SideBarContainer from './components/SideBar/SideBarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import LoginContainer from './components/Login/LoginContainer';
-import { initializeApp } from './redux/thunkCreators/thunkCreators';
+import { initializeApp } from './redux/thunk-creators/thunk-creators';
 import withRouter from './hoc/withRouter';
 import Preloader from './components/common/Preloader/Preloader';
 

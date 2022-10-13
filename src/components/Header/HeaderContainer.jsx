@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Header from './Header';
-import { getAuthData } from '../../redux/thunkCreators/thunkCreators';
-import { logOut } from '../../redux/actionCreators/actionCreators';
+import { getAuthData } from '../../redux/thunk-creators/thunk-creators';
+import { logOut } from '../../redux/action-creators/action-creators';
 
 const mapStateToProps = ({ header, auth }) => {
   return {

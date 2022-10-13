@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import withAuthRedirect from '../../hoc/withAuthRedirect';
-import { getDialogs } from '../../redux/thunkCreators/thunkCreators';
+import { getDialogs } from '../../redux/thunk-creators/thunk-creators';
 import withRouter from '../../hoc/withRouter';
 import withReactLazy from '../../hoc/withReactLazy';
 

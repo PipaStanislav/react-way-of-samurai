@@ -1,5 +1,5 @@
 import React from 'react';
-import { login } from '../../redux/thunkCreators/thunkCreators';
+import { login } from '../../redux/thunk-creators/thunk-creators';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 

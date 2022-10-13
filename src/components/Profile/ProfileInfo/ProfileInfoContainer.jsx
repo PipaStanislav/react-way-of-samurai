@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import ProfileInfo from './ProfileInfo';
 import withRouter from '../../../hoc/withRouter';
-import { updateProfile } from '../../../redux/thunkCreators/thunkCreators';
+import { updateProfile } from '../../../redux/thunk-creators/thunk-creators';
 
 const mapStateToProps = ({ profilePage, auth, preloader }) => {
   return {

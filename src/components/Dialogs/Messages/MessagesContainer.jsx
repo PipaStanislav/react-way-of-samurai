@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import Messages from './Messages';
-import { getDialog, sendDialogMessage } from '../../../redux/thunkCreators/thunkCreators';
+import { getDialog, sendDialogMessage } from '../../../redux/thunk-creators/thunk-creators';
 import withRouter from '../../../hoc/withRouter';
 
 const mapStateToProps = ({ messagesPage, auth }) => {

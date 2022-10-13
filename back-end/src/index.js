@@ -18,6 +18,6 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 
 app.use('/api', api);
 
-server.listen(4200, () => {
-  console.log('--------> app starts on 4200');
+server.listen(4000, () => {
+  console.log('--------> app starts on 4000');
 });

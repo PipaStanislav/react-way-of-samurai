@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import User from './User';
-import { followUnfollowByUser } from '../../../redux/thunkCreators/thunkCreators';
+import { followUnfollowByUser } from '../../../redux/thunk-creators/thunk-creators';
 
 const mapStateToProps = (props) => ({});
 

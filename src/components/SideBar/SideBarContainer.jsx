@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import SideBar from './SideBar';
-import { getFriends } from '../../redux/thunkCreators/thunkCreators';
-import getStateToProps from '../../redux/selectors/sideBarSelector';
+import { getFriends } from '../../redux/thunk-creators/thunk-creators';
+import getStateToProps from '../../redux/side-bar/side-bar-selector';
 
 const mapStateToProps = state => {
   return getStateToProps(state);

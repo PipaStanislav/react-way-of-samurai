@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import MyPosts from './MyPosts';
-import { addProfilePost, getProfilePosts } from '../../../redux/thunkCreators/thunkCreators';
+import { addProfilePost, getProfilePosts } from '../../../redux/thunk-creators/thunk-creators';
 import withRouter from '../../../hoc/withRouter';
 
 const mapStateToProps = ({ profilePage, auth }) => {

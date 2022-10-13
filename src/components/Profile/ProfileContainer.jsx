@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import withAuthRedirect from '../../hoc/withAuthRedirect';
 import withRouter from '../../hoc/withRouter';
-import { getProfile, getProfilePosts } from '../../redux/thunkCreators/thunkCreators';
+import { getProfile, getProfilePosts } from '../../redux/thunk-creators/thunk-creators';
 import withReactLazy from '../../hoc/withReactLazy';
 
 const Profile = React.lazy(() => import('./Profile'));
