@@ -18,7 +18,7 @@ export type AddressType = {
 }
 
 export type UserType = {
-  id: number,
+  id: UserIdType,
   firstName: string,
   lastName: string,
   fullName: string

@@ -1,4 +1,3 @@
-// @ts-ignore
 import preloaderImage from '../../assets/images/Spinner-1s-200px.svg';
 import { PreloaderStateType } from './preloader.types';
 

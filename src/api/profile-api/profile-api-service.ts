@@ -1,5 +1,5 @@
 import baseApiService from '../base-api-service';
-import { IdType, QueryType } from '../base-api-service.types';
+import { QueryType } from '../base-api-service.types';
 import {
   CreateProfileType,
   DeleteProfileType,
@@ -7,6 +7,7 @@ import {
   GetProfileType,
   UpdateProfileType,
 } from './profile-api-service.types';
+import { IdType } from '../../common/types';
 
 const profileEndpoints = {
   getProfile: (id: IdType): string => `/profile/${id}`,
@@ -17,10 +18,6 @@ const profileEndpoints = {
 }
 
 class profileApiService extends baseApiService {
-  constructor() {
-    super();
-  }
-
   getProfile = ({ id, ...query }: QueryType): GetProfileType => this.makeRequest(this.METHODS.GET, profileEndpoints.getProfile(id), { params: query });
   getProfiles = (query: QueryType): GetProfilesType => this.makeRequest(this.METHODS.GET, profileEndpoints.getProfiles(), { params: query });
   createProfile = (query: QueryType): CreateProfileType => this.makeRequest(this.METHODS.POST, profileEndpoints.createProfile(), { data: query });

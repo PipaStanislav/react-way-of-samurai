@@ -1,4 +1,5 @@
-import { MetaDataType } from '../../common/types';
+import { IdType, MetaDataType } from '../../common/types';
+import { UserIdType, UserType } from '../user/user.types';
 
 export type MessageType = {
   id: number,
@@ -6,17 +7,18 @@ export type MessageType = {
   userId: number,
 };
 
-export type DialogType = null | {
+export type DialogType = {
   id: number,
   organizerId: number,
   participantId: number,
-  messages: Array<MessageType>
+  messages: Array<MessageType>,
+  user: UserType,
 };
 
 export type DialogsType = Array<DialogType>
 
 export type DialogStateType = {
-  dialog: DialogType,
+  dialog: DialogType | null,
   dialogs: DialogsType,
   metaData: MetaDataType
 };

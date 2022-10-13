@@ -1,5 +1,5 @@
 import baseApiService from '../base-api-service';
-import { IdType, QueryType } from '../base-api-service.types';
+import { QueryType } from '../base-api-service.types';
 import {
   AddMessageType,
   CreateDialogType,
@@ -7,6 +7,7 @@ import {
   GetDialogsType,
   GetDialogType,
 } from './dialog-api-service.types';
+import { IdType } from '../../common/types';
 
 const dialogEndpoints = {
   getDialog: (id: IdType): string => `/dialog/${id}`,
@@ -17,10 +18,6 @@ const dialogEndpoints = {
 }
 
 class dialogApiService extends baseApiService {
-  constructor() {
-    super();
-  }
-
   getDialog = ({ id, ...query }: QueryType): GetDialogType => this.makeRequest(this.METHODS.GET, dialogEndpoints.getDialog(id), { params: query });
   getDialogs = (query: QueryType): GetDialogsType => this.makeRequest(this.METHODS.GET, dialogEndpoints.getDialogs(), { params: query });
   createDialog = (query: QueryType): CreateDialogType => this.makeRequest(this.METHODS.POST, dialogEndpoints.createDialog(), { data: query });

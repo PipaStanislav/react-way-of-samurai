@@ -8,7 +8,8 @@ import {
   UnfollowType,
   UpdateUserType,
 } from './user-api-service.types';
-import { IdType, QueryType } from '../base-api-service.types';
+import { QueryType } from '../base-api-service.types';
+import { IdType } from '../../common/types';
 
 const userEndpoints = {
   getUser: (id: IdType): string => `/user/${id}`,
@@ -21,10 +22,6 @@ const userEndpoints = {
 }
 
 class userApiService extends baseApiService {
-  constructor() {
-    super();
-  }
-
   getUser = ({ id, ...query }: QueryType): GetUserType => this.makeRequest(this.METHODS.GET, userEndpoints.getUser(id), { params: query });
   getUsers = (query: QueryType): GetUsersType => this.makeRequest(this.METHODS.GET, userEndpoints.getUsers(), { params: query });
   createUser = (query: QueryType): CreateUserType => this.makeRequest(this.METHODS.POST, userEndpoints.createUser(), { data: query });

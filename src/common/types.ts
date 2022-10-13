@@ -13,6 +13,8 @@ export type LimitType = number;
 export type CountType = number;
 export type TotalCountType = number;
 
+export type IdType = number;
+
 export type MetaDataType = {
   offset: OffsetType,
   limit: LimitType,

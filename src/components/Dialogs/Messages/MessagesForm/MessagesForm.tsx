@@ -1,7 +1,15 @@
+import { FC } from 'react';
+import { FormikProps } from 'formik/dist/types';
+
 import styles from './MessagesForm.module.css';
 import { Field, Formik } from 'formik';
+import { FormType, ValuesType } from '../Messages';
 
-const Form = ({ values, handleChange, handleBlur, handleSubmit, isSubmitting, onPostChange }) => {
+type PropsType = {
+  onSendMessage: (value: ValuesType, form: FormType) => void,
+};
+
+const Form = ({ values, handleChange, handleBlur, handleSubmit, isSubmitting }: FormikProps<ValuesType>): JSX.Element => {
   return (
     <form onSubmit={ handleSubmit }>
       <div className={ styles.formElement }>
@@ -24,7 +32,7 @@ const Form = ({ values, handleChange, handleBlur, handleSubmit, isSubmitting, on
   );
 }
 
-const MessagesForm = props => {
+const MessagesForm: FC<PropsType> = (props): JSX.Element => {
   return (
     <Formik initialValues={ { message: '' } } onSubmit={ props.onSendMessage }>
       { Form }
