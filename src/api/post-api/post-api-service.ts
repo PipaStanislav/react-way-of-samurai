@@ -12,10 +12,10 @@ const postEndpoints = {
 }
 
 class postApiService extends baseApiService {
-  getPost = ({ id, ...query }: QueryType): GetPostType => this.makeRequest(this.METHODS.GET, postEndpoints.getPost(id), { params: query });
+  getPost = ({ id, ...query }: QueryType): GetPostType => this.makeRequest(this.METHODS.GET, postEndpoints.getPost(id!), { params: query });
   getPosts = (query: QueryType): GetPostsType => this.makeRequest(this.METHODS.GET, postEndpoints.getPosts(), { params: query });
   createPost = (query: QueryType): CreatePostType => this.makeRequest(this.METHODS.POST, postEndpoints.createPost(), { data: query });
-  updatePost = ({ id, ...query }: QueryType): UpdatePostType => this.makeRequest(this.METHODS.PATCH, postEndpoints.updatePost(id), { data: query });
+  updatePost = ({ id, ...query }: QueryType): UpdatePostType => this.makeRequest(this.METHODS.PATCH, postEndpoints.updatePost(id!), { data: query });
   deletePost = (id: IdType): DeletePostType => this.makeRequest(this.METHODS.DELETE, postEndpoints.deletePost(id));
 }
 

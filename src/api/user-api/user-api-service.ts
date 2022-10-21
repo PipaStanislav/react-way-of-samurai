@@ -22,10 +22,10 @@ const userEndpoints = {
 }
 
 class userApiService extends baseApiService {
-  getUser = ({ id, ...query }: QueryType): GetUserType => this.makeRequest(this.METHODS.GET, userEndpoints.getUser(id), { params: query });
+  getUser = ({ id, ...query }: QueryType): GetUserType => this.makeRequest(this.METHODS.GET, userEndpoints.getUser(id!), { params: query });
   getUsers = (query: QueryType): GetUsersType => this.makeRequest(this.METHODS.GET, userEndpoints.getUsers(), { params: query });
   createUser = (query: QueryType): CreateUserType => this.makeRequest(this.METHODS.POST, userEndpoints.createUser(), { data: query });
-  updateUser = ({ id, ...query }: QueryType): UpdateUserType => this.makeRequest(this.METHODS.PATCH, userEndpoints.updateUser(id), { data: query });
+  updateUser = ({ id, ...query }: QueryType): UpdateUserType => this.makeRequest(this.METHODS.PATCH, userEndpoints.updateUser(id!), { data: query });
   deleteUser = (id: IdType): DeleteUserType => this.makeRequest(this.METHODS.DELETE, userEndpoints.deleteUser(id));
   follow = (query: QueryType): FollowType => this.makeRequest(this.METHODS.POST, userEndpoints.follow(), { data: query });
   unfollow = (query: QueryType): UnfollowType => this.makeRequest(this.METHODS.POST, userEndpoints.unfollow(), { data: query });

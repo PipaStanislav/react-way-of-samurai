@@ -18,10 +18,10 @@ const dialogEndpoints = {
 }
 
 class dialogApiService extends baseApiService {
-  getDialog = ({ id, ...query }: QueryType): GetDialogType => this.makeRequest(this.METHODS.GET, dialogEndpoints.getDialog(id), { params: query });
+  getDialog = ({ id, ...query }: QueryType): GetDialogType => this.makeRequest(this.METHODS.GET, dialogEndpoints.getDialog(id!), { params: query });
   getDialogs = (query: QueryType): GetDialogsType => this.makeRequest(this.METHODS.GET, dialogEndpoints.getDialogs(), { params: query });
   createDialog = (query: QueryType): CreateDialogType => this.makeRequest(this.METHODS.POST, dialogEndpoints.createDialog(), { data: query });
-  deleteDialog = (id: IdType): DeleteDialogType => this.makeRequest(this.METHODS.DELETE, dialogEndpoints.deleteDialog(id));
+  deleteDialog = (id: IdType): DeleteDialogType => this.makeRequest(this.METHODS.DELETE, dialogEndpoints.deleteDialog(id!));
   addMessage = (query: QueryType): AddMessageType => this.makeRequest(this.METHODS.POST, dialogEndpoints.addMessage(), { data: query });
 }
 

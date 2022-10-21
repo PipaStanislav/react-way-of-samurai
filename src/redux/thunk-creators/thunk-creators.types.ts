@@ -4,7 +4,7 @@ import { ActionTypes } from '../action-creators/action-creators.types';
 import { UserIdType } from '../user/user.types';
 
 export type ParamsType = {
-  id: IdType
+  id?: IdType
   userId: UserIdType,
   password?: string,
   isFollow?: boolean,
