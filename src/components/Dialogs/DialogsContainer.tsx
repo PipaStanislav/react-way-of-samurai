@@ -16,7 +16,7 @@ type MapStateToPropsType = {
   authUserId: AuthUserIdType,
 }
 
-type MapDispatchToProps = {
+type MapDispatchToPropsType = {
   getDialogs: (params: ParamsType ) => ThunkType,
 }
 
@@ -29,9 +29,9 @@ const mapStateToProps = ({ messagesPage, auth }: StateType): MapStateToPropsType
   };
 };
 
-const mapDispatchToProps: MapDispatchToProps = { getDialogs };
+const mapDispatchToProps: MapDispatchToPropsType = { getDialogs };
 
-class DialogsContainer extends React.Component<MapStateToPropsType & MapDispatchToProps & RouterType > {
+class DialogsContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType & RouterType > {
   componentDidMount = (): void => {
     this.props.getDialogs({ userId: this.props.authUserId! });
   }

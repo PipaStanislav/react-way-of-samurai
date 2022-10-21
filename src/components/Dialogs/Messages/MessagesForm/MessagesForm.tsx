@@ -9,7 +9,7 @@ type PropsType = {
   onSendMessage: (value: ValuesType, form: FormType) => void,
 };
 
-const Form = ({ values, handleChange, handleBlur, handleSubmit, isSubmitting }: FormikProps<ValuesType>): JSX.Element => {
+const Form: FC<FormikProps<ValuesType>> = ({ values, handleChange, handleBlur, handleSubmit, isSubmitting }): JSX.Element => {
   return (
     <form onSubmit={ handleSubmit }>
       <div className={ styles.formElement }>
