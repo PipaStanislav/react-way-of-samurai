@@ -1,7 +1,13 @@
 import styles from './Music.module.css';
 import ReactAudioPlayer from 'react-audio-player';
+import { MusicsType } from '../../redux/music/music.types';
+import { FC } from 'react';
 
-const Music = props => {
+type PropsType = {
+  musics: MusicsType
+}
+
+const Music: FC<PropsType> = (props): JSX.Element => {
   const songs = props.musics.map(music => {
     return (
       <div key={ music.id }>

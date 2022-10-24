@@ -49,9 +49,9 @@ export const followUnfollowByUser = ({ isFollow, userId, id }: ParamsType): Thun
 
   if (result) {
     if (isFollow) {
-      dispatch(unfollowByUser(userId));
+      dispatch(unfollowByUser(userId!));
     } else {
-      dispatch(followByUser(userId));
+      dispatch(followByUser(userId!));
     }
 
     dispatch(setIsFollowingUnfollowingInProgress({ isFollowingUnfollowingInProgress: false, userId }));
