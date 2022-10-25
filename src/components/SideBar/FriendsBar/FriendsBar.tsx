@@ -1,8 +1,18 @@
-import styles from './FriendsBar.module.css';
 import { NavLink } from 'react-router-dom';
+import { FC } from 'react';
 
-const FriendsBar = (props) => {
-  const friendsElements = props.state.friends.map(({ id, firstName, avatar }) => {
+import styles from './FriendsBar.module.css';
+import { FriendsType } from '../../../redux/side-bar/side-bar.types';
+
+type PropsType = {
+  state: {
+    friends: FriendsType,
+    title: string,
+  }
+}
+
+const FriendsBar: FC<PropsType> = (props): JSX.Element => {
+  const friendsElements: Array<JSX.Element> = props.state.friends.map(({ id, firstName, avatar }) => {
     return (
       <div key={ id } className={ styles.item }>
         <img src={ avatar.large.src } alt={ avatar.large.title }/>

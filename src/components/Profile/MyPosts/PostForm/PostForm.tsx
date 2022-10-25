@@ -5,7 +5,6 @@ import { FormikProps } from 'formik/dist/types';
 import styles from './PostForm.module.css';
 import { newPostTextType } from '../../../../redux/profile/profile.types';
 import { ValuesType } from '../MyPosts';
-import { UserIdType } from '../../../../redux/user/user.types';
 
 type FormType = {
   resetForm: () => void,

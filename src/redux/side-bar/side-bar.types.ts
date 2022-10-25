@@ -1,4 +1,5 @@
-import { LimitType, OffsetType } from '../../common/types';
+import { IdType, LimitType, OffsetType } from '../../common/types';
+import { AvatarType } from '../user/user.types';
 
 export type NavBarElementType = {
   id: number,
@@ -9,7 +10,11 @@ export type NavBarElementType = {
 
 export type NavBarType = Array<NavBarElementType>;
 
-export type FriendType = object;
+export type FriendType = {
+  id: IdType,
+  firstName: string,
+  avatar: AvatarType,
+};
 
 export type FriendsType = Array<FriendType>;
 
