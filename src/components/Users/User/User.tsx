@@ -1,7 +1,22 @@
 import styles from './User.module.css';
 import { NavLink } from 'react-router-dom';
+import { FC } from 'react';
+import {
+  FollowingUnfollowingInProgressType,
+  UserDefaultDataType,
+  UserIdType,
+  UserType,
+} from '../../../redux/user/user.types';
 
-const User = (props) => {
+type PropsType = {
+  user: UserType,
+  defaultData: UserDefaultDataType,
+  followingUnfollowingInProgress: FollowingUnfollowingInProgressType,
+
+  onClickFollowUnfollow: (isFollow: boolean, userId: UserIdType) => void,
+}
+
+const User: FC<PropsType> = (props): JSX.Element => {
   const { user, onClickFollowUnfollow, followingUnfollowingInProgress, defaultData } = props;
   const { avatar, fullName, status, address, isFollow } = user;
 
@@ -9,7 +24,7 @@ const User = (props) => {
     <div className={ styles.item }>
       <div className={ styles.avatar }>
         <NavLink to={ `/profile/${ user.id }` }>
-          <img src={ avatar.large.src || defaultData.avatar.src } alt={ avatar.large.title || defaultData.avatar.alt }/>
+          <img src={ avatar.large.src || defaultData.avatar.src } alt={ avatar.large.title || defaultData.avatar.title }/>
         </NavLink>
         <button
           disabled={ followingUnfollowingInProgress.includes(user.id) }

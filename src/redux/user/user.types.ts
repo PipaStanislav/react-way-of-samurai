@@ -34,7 +34,7 @@ export type FollowingUnfollowingInProgressType = Array<number>;
 
 export type isFollowingUnfollowingInProgress = boolean;
 
-export type DefaultDataType = {
+export type UserDefaultDataType = {
   avatar: AvatarImageType
 }
 
@@ -47,7 +47,7 @@ export type DataType = {
   isFollowingUnfollowingInProgress: boolean,
 }
 
-export type DisplayUsers = string;
+export type DisplayUsersType = string;
 
 export type UsersStateType = {
   offset: OffsetType,
@@ -56,7 +56,7 @@ export type UsersStateType = {
   totalCount: TotalCountType,
   users: UsersType,
   activePage: ActivePageType,
-  displayUsers: DisplayUsers,
+  displayUsers: DisplayUsersType,
   followingUnfollowingInProgress: FollowingUnfollowingInProgressType,
-  defaultData: DefaultDataType,
+  defaultData: UserDefaultDataType,
 };

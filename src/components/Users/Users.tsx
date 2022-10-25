@@ -1,9 +1,32 @@
 import styles from './Users.module.css';
 import USER_CONSTANTS from './constants/userConstants';
-import React from 'react';
+import React, { FC } from 'react';
 import UserContainer from './User/UserContainer';
+import {
+  ActivePageType,
+  DisplayUsersType,
+  FollowingUnfollowingInProgressType,
+  UserDefaultDataType,
+  UsersType,
+} from '../../redux/user/user.types';
+import { AuthStateType } from '../../redux/auth/auth.types';
+import { LimitType, TotalCountType } from '../../common/types';
 
-const generateUserElements = (props) => {
+type PropsType = {
+  auth: AuthStateType,
+  defaultData: UserDefaultDataType,
+  followingUnfollowingInProgress: FollowingUnfollowingInProgressType,
+  users: UsersType
+  displayUsers: DisplayUsersType,
+  totalCount: TotalCountType,
+  limit: LimitType,
+  activePage: ActivePageType,
+  onChangeDisplayUsers: () => void,
+  onShowMore: () => void,
+  onSetActivePage: (pageNumber: number) => void,
+}
+
+const generateUserElements = (props: PropsType): Array<JSX.Element> => {
   return props.users.map((user) => {
     return (
       <UserContainer
@@ -13,23 +36,23 @@ const generateUserElements = (props) => {
         auth={ props.auth }
         defaultData={ props.defaultData }
       />
-    )
-  })
-}
+    );
+  });
+};
 
-const showMoreButtonElement = (props) => {
+const showMoreButtonElement: FC<PropsType> = (props): JSX.Element => {
   return (
     <div
       className={ `${ styles.showMore } ${ props.users.length === props.totalCount ? styles.hideShowMoreButton : '' }` }>
       <button onClick={ props.onShowMore }>Show more</button>
     </div>
   );
-}
+};
 
-const pagesButtonsElements = (props) => {
-  const pagesCount = Math.ceil(props.totalCount / props.limit);
+const pagesButtonsElements: FC<PropsType> = (props): JSX.Element => {
+  const pagesCount: number = Math.ceil(props.totalCount / props.limit);
 
-  const elements = Array(pagesCount).fill(null).map((value, index) => {
+  const elements: Array<JSX.Element> = Array(pagesCount).fill(null).map((value, index) => {
     const count = index + 1;
 
     return (
@@ -39,18 +62,18 @@ const pagesButtonsElements = (props) => {
         key={ count }
       >
           { count }
-        </span>
+      </span>
     );
-  })
+  });
 
   return (
     <div className={ styles.pages }>
       { elements }
     </div>
   );
-}
+};
 
-const Users = (props) => {
+const Users: FC<PropsType> = (props): JSX.Element => {
   return (
     <div className={ styles.users }>
       <div className={ styles.usersDisplay }>

@@ -3,12 +3,14 @@ import getPreloaderStateToProps from '../preloader/preloader-selectors';
 import { CountType, LimitType, OffsetType, StateType, TotalCountType } from '../../common/types';
 import {
   ActivePageType,
-  DefaultDataType,
-  DisplayUsers,
+  UserDefaultDataType,
+  DisplayUsersType,
   FollowingUnfollowingInProgressType,
   UsersStateType,
   UsersType,
 } from './user.types';
+import { AuthStateType } from '../auth/auth.types';
+import { PreloaderStateType } from '../preloader/preloader.types';
 
 export const getUsers = (state: StateType): UsersType => state.usersPage.users;
 
@@ -20,13 +22,13 @@ export const getCount = (state: StateType): CountType => state.usersPage.count;
 
 export const getTotalCount = (state: StateType): TotalCountType => state.usersPage.totalCount;
 
-export const getDisplayUsers = (state: StateType): DisplayUsers => state.usersPage.displayUsers;
+export const getDisplayUsers = (state: StateType): DisplayUsersType => state.usersPage.displayUsers;
 
 export const getActivePage = (state: StateType): ActivePageType => state.usersPage.activePage;
 
 export const getFollowingUnfollowingInProgress = (state: StateType): FollowingUnfollowingInProgressType => state.usersPage.followingUnfollowingInProgress;
 
-export const getDefaultData = (state: StateType): DefaultDataType => state.usersPage.defaultData;
+export const getDefaultData = (state: StateType): UserDefaultDataType => state.usersPage.defaultData;
 
 export const getUsersStateToProps = (state: StateType): UsersStateType => {
   return {
@@ -42,7 +44,7 @@ export const getUsersStateToProps = (state: StateType): UsersStateType => {
   };
 };
 
-const getStateToProps = (state: StateType): UsersStateType => {
+const getStateToProps = (state: StateType): UsersStateType & { auth: AuthStateType, preloader: PreloaderStateType } => {
   return {
     ...getUsersStateToProps(state),
     ...getAuthStateToProps(state),

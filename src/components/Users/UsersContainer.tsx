@@ -10,27 +10,40 @@ import withAuthRedirect from '../../hoc/withAuthRedirect';
 import getStateToProps from '../../redux/user/user-selectors';
 import { requestUsers } from '../../redux/thunk-creators/thunk-creators';
 import { changeDisplayUsers, setActivePage } from '../../redux/action-creators/action-creators';
+import { LimitType, OffsetType, StateType } from '../../common/types';
+import { AuthStateType } from '../../redux/auth/auth.types';
+import { PreloaderStateType } from '../../redux/preloader/preloader.types';
+import { UsersStateType } from '../../redux/user/user.types';
+import { ParamsType } from '../../redux/thunk-creators/thunk-creators.types';
 
-const mapStateToProps = state => {
+type MapStateToPropsType = UsersStateType & { auth: AuthStateType, preloader: PreloaderStateType };
+
+type MapDispatchToPropsType = {
+  setActivePage: (pageNumber: number) => void,
+  changeDisplayUsers: () => void,
+  requestUsers: (params: ParamsType) => void,
+}
+
+const mapStateToProps = (state: StateType): MapStateToPropsType => {
   return getStateToProps(state);
 };
 
-const mapDispatchToProps = {
+const mapDispatchToProps: MapDispatchToPropsType = {
   setActivePage,
   changeDisplayUsers,
   requestUsers,
 };
 
-class UsersContainer extends React.Component {
-  componentDidMount = () => {
+class UsersContainer extends React.Component<MapStateToPropsType & MapDispatchToPropsType> {
+  componentDidMount = (): Promise<void> => {
     return this.requestUsers();
   }
 
-  requestUsers = async () => {
+  requestUsers = async (): Promise<void> => {
     this.props.requestUsers(this.getQuery());
   }
 
-  getQuery = () => {
+  getQuery = (): { offset: OffsetType, limit: LimitType } => {
     return this.props.displayUsers === USER_CONSTANTS.DISPLAY_USERS.LIST
       ? { offset: this.props.users.length, limit: this.props.limit + this.props.users.length }
       : {
@@ -39,23 +52,23 @@ class UsersContainer extends React.Component {
       };
   }
 
-  onShowMore = () => {
+  onShowMore = (): Promise<void> => {
     return this.requestUsers();
   }
 
-  onChangeDisplayUsers = async () => {
+  onChangeDisplayUsers = async (): Promise<void> => {
     await this.props.changeDisplayUsers();
 
     return this.requestUsers();
   }
 
-  onSetActivePage = async pageNumber => {
+  onSetActivePage = async (pageNumber: number): Promise<void> => {
     await this.props.setActivePage(pageNumber);
 
     return this.requestUsers();
   }
 
-  render = () => {
+  render = (): JSX.Element => {
     if (this.props.preloader.isFetching) {
       return (
         <Preloader preloader={this.props.preloader}/>
