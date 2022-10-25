@@ -1,8 +1,21 @@
 import styles from './ProfileInfo.module.css';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
 import Preloader from '../../common/Preloader/Preloader';
+import { FC } from 'react';
+import { ContactsType, ProfileType } from '../../../redux/profile/profile.types';
+import { PreloaderStateType } from '../../../redux/preloader/preloader.types';
+import { ParamsType } from '../../../redux/thunk-creators/thunk-creators.types';
+import { AuthStateType } from '../../../redux/auth/auth.types';
 
-const ProfileInfo = (props) => {
+type PropsType = {
+  profile: ProfileType,
+  preloader: PreloaderStateType,
+  auth: AuthStateType,
+
+  updateProfile: (params: ParamsType) => void,
+};
+
+const ProfileInfo: FC<PropsType> = (props): JSX.Element => {
   if (!props.profile) {
     return <Preloader preloader={ props.preloader }/>
   }
@@ -29,11 +42,11 @@ const ProfileInfo = (props) => {
           <div className={ styles.info }><span>Job description: </span> { props.profile.lookingForAJobDescription }
           </div>
           {
-            Object.keys(props.profile.contacts).map((contactKey, index) => {
+            Object.keys(props.profile.contacts).map((contactKey, index): JSX.Element => {
               return (
                 <div className={ styles.info } key={ index }>
                   <span>{ contactKey }: </span> <a
-                  href={ props.profile.contacts[contactKey] }>{ props.profile.contacts[contactKey] }</a>
+                  href={ props.profile.contacts[contactKey as keyof ContactsType] }>{ props.profile.contacts[contactKey as keyof ContactsType] }</a>
                 </div>
               )
             })

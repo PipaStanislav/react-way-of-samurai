@@ -1,5 +1,5 @@
 import { MetaDataType } from '../../common/types';
-import { AvatarType } from '../user/user.types';
+import { AvatarType, UserIdType, UserType } from '../user/user.types';
 
 export type newPostTextType = string;
 
@@ -9,6 +9,7 @@ export type PostType = {
   message: string,
   likesCount: number,
   authorId: number,
+  user: UserType,
 };
 
 export type PostsType = Array<PostType>;
@@ -20,13 +21,15 @@ export type ContactsType = {
   github: string,
 };
 
+export type ProfileStatusType = string;
+
 export type ProfileType = {
-  userId: number,
+  userId: UserIdType,
   aboutMe: string,
   lookingForAJob: boolean,
   lookingForAJobDescription: string,
   fullName: string,
-  status: string,
+  status: ProfileStatusType,
   avatar: AvatarType,
   contacts: ContactsType,
 };

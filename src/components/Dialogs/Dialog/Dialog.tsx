@@ -1,5 +1,6 @@
-import styles from './Dialog.module.css';
 import { NavLink } from 'react-router-dom';
+
+import styles from './Dialog.module.css';
 import { IdType } from '../../../common/types';
 import { DialogType } from '../../../redux/dialog/dialog.types';
 

@@ -46,6 +46,28 @@ describe('Profile reducer', () => {
       message: faker.lorem.sentence(),
       likesCount: 0,
       authorId: 1,
+      user: {
+        id: 1,
+        firstName: "Colleen",
+        lastName: "Farrel",
+        status: "Ducimus rem quisquam facere vitae.",
+        isFollow: true,
+        avatar: {
+          small: {
+            src: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/685.jpg',
+            title: 'small'
+          },
+          large: {
+            src: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/685.jpg',
+            title: 'large'
+          },
+        },
+        address: {
+          country: "Angola",
+          city: "West Jay"
+        },
+        fullName: "Colleen Farel"
+      },
     },
     {
       id: 2,
@@ -53,6 +75,28 @@ describe('Profile reducer', () => {
       message: faker.lorem.sentence(),
       likesCount: 0,
       authorId: 1,
+      user: {
+        id: 1,
+        firstName: "Colleen",
+        lastName: "Farrel",
+        status: "Ducimus rem quisquam facere vitae.",
+        isFollow: true,
+        avatar: {
+          small: {
+            src: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/685.jpg',
+            title: 'small'
+          },
+          large: {
+            src: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/685.jpg',
+            title: 'large'
+          },
+        },
+        address: {
+          country: "Angola",
+          city: "West Jay"
+        },
+        fullName: "Colleen Farel"
+      },
     },
     {
       id: 3,
@@ -60,6 +104,28 @@ describe('Profile reducer', () => {
       message: faker.lorem.sentence(),
       likesCount: 0,
       authorId: 1,
+      user: {
+        id: 1,
+        firstName: "Colleen",
+        lastName: "Farrel",
+        status: "Ducimus rem quisquam facere vitae.",
+        isFollow: true,
+        avatar: {
+          small: {
+            src: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/685.jpg',
+            title: 'small'
+          },
+          large: {
+            src: 'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/685.jpg',
+            title: 'large'
+          },
+        },
+        address: {
+          country: "Angola",
+          city: "West Jay"
+        },
+        fullName: "Colleen Farel"
+      },
     },
   ];
 

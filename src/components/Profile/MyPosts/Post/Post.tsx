@@ -1,6 +1,14 @@
 import styles from './Post.module.css';
+import { FC } from 'react';
+import { PostType } from '../../../../redux/profile/profile.types';
+import { IdType } from '../../../../common/types';
 
-const Post = (props) => {
+type PropsType = {
+  id: IdType,
+  post: PostType
+}
+
+const Post: FC<PropsType> = (props): JSX.Element => {
   const { message, likesCount, user } = props.post;
   const { avatar } = user;
 

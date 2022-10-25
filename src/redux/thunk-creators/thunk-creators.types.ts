@@ -11,7 +11,9 @@ export type ParamsType = Partial<{
   isRememberMe: boolean,
   email: string,
   offset: number,
-  limit: number
+  limit: number,
+  status: string,
+  authorId: UserIdType,
 }>;
 
 export type DispatchType = (a: any) => {};
