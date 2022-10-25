@@ -35,7 +35,7 @@ type MapDispatchToProps = {
 
 const mapDispatchToProps = { getAuthData, logOut };
 
-class HeaderContainer extends React.Component<NavLinkProps & MapStateToPropsType & MapDispatchToProps> {
+class HeaderContainer extends React.Component<MapStateToPropsType & MapDispatchToProps & NavLinkProps> {
   render() {
     return (
       <Header { ...this.props } />

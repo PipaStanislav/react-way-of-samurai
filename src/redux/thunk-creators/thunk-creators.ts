@@ -147,8 +147,8 @@ export const getFriends = (params: ParamsType): ThunkType => async (dispatch: Di
   dispatch(setFriends(data))
 };
 
-export const initializeApp = (params: ParamsType): ThunkType => async (dispatch: DispatchType) => {
-  await dispatch(getAuthData(params));
+export const initializeApp = (params?: ParamsType): ThunkType => async (dispatch: DispatchType) => {
+  await dispatch(getAuthData(params!));
   dispatch(setInitializedSuccess());
 };
 

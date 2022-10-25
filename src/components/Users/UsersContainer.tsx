@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -95,7 +95,7 @@ class UsersContainer extends React.Component<MapStateToPropsType & MapDispatchTo
 
 }
 
-export default compose(
+export default compose<ComponentType>(
   withAuthRedirect,
   connect(mapStateToProps, mapDispatchToProps),
 )(UsersContainer)

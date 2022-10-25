@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -16,17 +16,28 @@ import LoginContainer from './components/Login/LoginContainer';
 import { initializeApp } from './redux/thunk-creators/thunk-creators';
 import withRouter from './hoc/withRouter';
 import Preloader from './components/common/Preloader/Preloader';
+import { StateType } from './common/types';
+import { InitializedType } from './redux/app/app.types';
+import { PreloaderStateType } from './redux/preloader/preloader.types';
+import { ParamsType } from './redux/thunk-creators/thunk-creators.types';
 
-const mapStateToProps = state => {
-  return {
+type MapStateToPropsType = {
+  initialized: InitializedType,
+  preloader: PreloaderStateType,
+}
+
+type MapDispatchToPropsType = {
+  initializeApp: (params?: ParamsType) => void,
+}
+
+const mapStateToProps = (state: StateType): MapStateToPropsType => ({
     initialized: state.app.initialized,
     preloader: state.preloader,
-  };
-};
+});
 
-const mapDispatchToProps = { initializeApp };
+const mapDispatchToProps: MapDispatchToPropsType = { initializeApp };
 
-class App extends React.Component {
+class App extends React.Component<MapStateToPropsType & MapDispatchToPropsType> {
   componentDidMount = () => {
     this.props.initializeApp()
   };
@@ -38,7 +49,7 @@ class App extends React.Component {
     return (
       <div className='app-wrapper'>
 
-        <HeaderContainer/>
+        <HeaderContainer to={''}/>
 
         <SideBarContainer/>
 
@@ -67,7 +78,7 @@ class App extends React.Component {
   }
 }
 
-export default compose(
+export default compose<ComponentType>(
   withRouter,
   connect(mapStateToProps, mapDispatchToProps)
 )(App);

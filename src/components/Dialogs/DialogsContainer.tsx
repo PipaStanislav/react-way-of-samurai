@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentType } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
@@ -44,7 +44,7 @@ class DialogsContainer extends React.Component<MapStateToPropsType & MapDispatch
 }
 
 
-export default compose(
+export default compose<ComponentType>(
   withRouter,
   withAuthRedirect,
   withReactLazy,
